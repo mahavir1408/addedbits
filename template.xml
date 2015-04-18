@@ -126,29 +126,23 @@
                   <div class="caption">
                     <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
                     <p>
+                      <strong>Tag(s): </strong>
+                      <b:loop var="label" values="data:post.labels">
+                        <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
+                      </b:loop>
+                    </p>
+                    <p class="post"><data:post.body/><data:post.dateHeader/></p>
+                    <p>
                       <a class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
                       <a class="btn btn-github"><i class="fa fa-github"></i></a>
                       <a class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
                       <a class="btn btn-linkedin"><i class="fa fa-linkedin"></i></a>
                     </p>
-                    <p class="post"><data:post.body/><data:post.dateHeader/><b:include data='post' name='labels'/></p>
                   </div>
                 </div>
               </b:loop>
             </b:includable>
-
-            <b:includable id='labels' var='post'>
-              <b:if cond='data:post.labels'>
-                <p>
-                  <strong>Tag(s): </strong>
-                  <b:loop values='data:post.labels' var='label'>
-                    <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
-                  </b:loop>
-                </p>
-              </b:if>
-            </b:includable>
             
-
             <b:includable id='nextprev'>
             <div class="row">
               <b:if cond='data:olderPageUrl'>
