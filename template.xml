@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <b:if cond='data:blog.pageType == &quot;index&quot;'>
+    </b:if>
+    <b:if cond='data:blog.pageType == &quot;index&quot;'>
+      <title>
+        <data:blog.pageTitle/>
+      </title>
+      <b:else/>
+      <title>
+        <data:blog.pageName/>
+      </title>
+    </b:if>
+    <b:include data='blog' name='all-head-content'/>
+    &lt;style type=&quot;text/css&quot;&gt;&lt;!-- /*<b:skin><![CDATA[*/]]></b:skin>
+    <style type='text/css'> 
+      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
+      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css);
+      @import url(https://4a599022285149371da3be8db01bc3e2c6e7edd4.googledrive.com/host/0BzNuNsgwJPZ5c0poTk1RWkhYWHc);
+      /* Sticky footer styles
+      -------------------------------------------------- */
+      html {
+        position: relative;
+        min-height: 100%;
+      }
+      body {
+        /* Margin bottom by footer height */
+        margin-bottom: 60px;
+      }
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        /* Set the fixed height of the footer here */
+        height: 60px;
+        background-color: #f5f5f5;
+      }
+
+
+      /* Custom page CSS
+      -------------------------------------------------- */
+      /* Not required for template or sticky footer method. */
+
+      body > .container {
+        padding: 0px 15px 0;
+      }
+      .container .text-muted {
+        margin: 20px 0;
+      }
+
+      .footer > .container {
+        padding-right: 15px;
+        padding-left: 15px;
+      }
+
+      code {
+        font-size: 80%;
+      }
+      .btn.active, .btn:active {margin:5px !important;}
+    </style>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="http://lipis.github.io/bootstrap-social/bootstrap-social.css" />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href='https://79ce7bbd71766b2fae4ab744260dde3d6a47168c.googledrive.com/host/0BzNuNsgwJPZ5RnMxWXRuVmJvRVU' rel='shortcut icon'/>
+    <link href='https://79ce7bbd71766b2fae4ab744260dde3d6a47168c.googledrive.com/host/0BzNuNsgwJPZ5RnMxWXRuVmJvRVU' rel='shortcut icon' type='image/vnd.microsoft.icon'/>    
+  </head>
+  <body>
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="top-bar"></div>
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="header-logo" href="/"><img src="https://760e223fee634973f0268168cc932fc26834b215.googledrive.com/host/0BzNuNsgwJPZ5Vi1vZGI3bnlOVzA" /></a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="">Home</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li><a href="#">Separated link</a></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+  <!-- Fixed navbar -->
+  <div class="container theme-showcase">
+    <div class="container">
+      <div class="row">       
+        
+        <b:section class='col-sm-9' id='main' maxwidgets='1' showaddelement='no'>
+          <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog'>
+          
+            <b:includable id='main' var='post'>
+              <b:include name='Postings'/>
+              <b:include name='nextprev'/>
+            </b:includable>
+
+            <b:includable id='Postings'>
+              <b:loop values='data:posts' var='post'>               
+                <div class="thumbnail">
+                  <div class="caption">
+                    <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+                    <p>
+                      <a class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+                      <a class="btn btn-github"><i class="fa fa-github"></i></a>
+                      <a class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
+                      <a class="btn btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                    </p>
+                    <p class="post"><data:post.body/><data:post.dateHeader/><b:include data='post' name='labels'/></p>
+                  </div>
+                </div>
+              </b:loop>
+            </b:includable>
+
+            <b:includable id='labels' var='post'>
+              <b:if cond='data:post.labels'>
+                <p>
+                  <strong>Tag(s): </strong>
+                  <b:loop values='data:post.labels' var='label'>
+                    <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
+                  </b:loop>
+                </p>
+              </b:if>
+            </b:includable>
+            
+
+            <b:includable id='nextprev'>
+            <div class="row">
+              <b:if cond='data:olderPageUrl'>
+                <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:olderPageUrl'><data:olderPageTitle/></a></div>
+              </b:if>
+              <b:if cond='data:blog.pageType != &quot;index&quot;'>
+                <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" href='/'>Home</a></div>                
+              </b:if>
+              <b:if cond='data:newerPageUrl'>
+                <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:newerPageUrl'><data:newerPageTitle/></a></div>
+              </b:if>
+            </div>
+            <br />
+            </b:includable>
+            
+            <b:includable id='shareButtons'/>
+            <b:includable id='backlinks'/>
+            <b:includable id='status-message'/>
+            <b:includable id='comment-form'/>
+            <b:includable id='backlinkDeleteIcon'/>
+            <b:includable id='mobile-nextprev'/>
+            <b:includable id='postQuickEdit'/>
+            <b:includable id='commentDeleteIcon'/>
+            <b:includable id='feedLinks'/>
+            <b:includable id='mobile-index-post'/>
+            <b:includable id='feedLinksBody'/>
+            <b:includable id='comments' var='post'/>
+
+          </b:widget>
+        </b:section>
+        
+        
+
+
+        
+        <b:section class='col-sm-3' id='sidebar'>        
+          <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts'>          
+            <b:includable id='main'>
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
+                <!-- List group -->
+                <ul class="list-group">
+                  <b:loop values='data:posts' var='post'>
+                    <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>                                                
+                  </b:loop>
+                </ul>
+              </div>
+            </b:includable>
+          </b:widget>
+        </b:section>
+        
+      </div> <!-- /row -->
+    </div> <!-- /container -->
+  </div> <!-- /container theme-showcase-->
+  
+  <div class="footer">
+    <div class="plain-bar"></div>
+    <div class="container">
+      <a class="footer-logo" href="/"><img src="https://760e223fee634973f0268168cc932fc26834b215.googledrive.com/host/0BzNuNsgwJPZ5Vi1vZGI3bnlOVzA" /></a>
+      <p>
+        Copyright &#169; 2013 addedbits.com. All rights reserved, the content is copyrighted to Mahavir Munot - <a href='#' title='addedbits Advertisement'>Advertise</a>
+      </p>
+    </div>
+  </div>
+  <!-- Bootstrap core JavaScript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'/>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'/>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src='http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js'/>
+  </body>
+</html>
