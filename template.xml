@@ -111,104 +111,106 @@
   <div class="container theme-showcase">
     <div class="container">
       <div class="row">       
-        
-        <b:section class='col-sm-9' id='main' maxwidgets='1' showaddelement='no'>
-          <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog'>
-          
-            <b:includable id='main' var='post'>
-              <b:include name='Postings'/>
-              <b:include name='nextprev'/>
-            </b:includable>
+        <div class="col-sm-9">
+          <b:section class='section1' id='main' maxwidgets='1' showaddelement='no'>
+            <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog'>
+            
+              <b:includable id='main' var='post'>
+                <b:include name='Postings'/>
+                <b:include name='nextprev'/>
+              </b:includable>
 
-            <b:includable id='Postings'>
-              <b:loop values='data:posts' var='post'>               
-                <div class="thumbnail">
-                  <div class="caption">
-                    <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
-                    <p>
-                      <strong>Tag(s): </strong>
-                      <b:loop var="label" values="data:post.labels">
-                        <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
-                      </b:loop>
-                    </p>
-                    <p class="post"><data:post.body/><data:post.dateHeader/></p>
-                    <p>
-                      <a class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
-                      <a class="btn btn-github"><i class="fa fa-github"></i></a>
-                      <a class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
-                      <a class="btn btn-linkedin"><i class="fa fa-linkedin"></i></a>
-                    </p>
+              <b:includable id='Postings'>
+                <b:loop values='data:posts' var='post'>               
+                  <div class="thumbnail">
+                    <div class="caption">
+                      <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+                      <p>
+                        <strong>Tag(s): </strong>
+                        <b:loop var="label" values="data:post.labels">
+                          <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
+                        </b:loop>
+                      </p>
+                      <p class="post"><data:post.body/><data:post.dateHeader/></p>
+                      <p>
+                        <a class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
+                        <a class="btn btn-github"><i class="fa fa-github"></i></a>
+                        <a class="btn btn-facebook"><i class="fa fa-facebook"></i></a>
+                        <a class="btn btn-linkedin"><i class="fa fa-linkedin"></i></a>
+                      </p>
+                    </div>
                   </div>
+                </b:loop>
+              </b:includable>
+              
+              <b:includable id='nextprev'>
+              <div class="row">
+                <b:if cond='data:olderPageUrl'>
+                  <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:olderPageUrl'><data:olderPageTitle/></a></div>
+                </b:if>
+                <b:if cond='data:blog.pageType != &quot;index&quot;'>
+                  <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" href='/'>Home</a></div>                
+                </b:if>
+                <b:if cond='data:newerPageUrl'>
+                  <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:newerPageUrl'><data:newerPageTitle/></a></div>
+                </b:if>
+              </div>
+              <br />
+              </b:includable>
+              
+              <b:includable id='shareButtons'/>
+              <b:includable id='backlinks'/>
+              <b:includable id='status-message'/>
+              <b:includable id='comment-form'/>
+              <b:includable id='backlinkDeleteIcon'/>
+              <b:includable id='mobile-nextprev'/>
+              <b:includable id='postQuickEdit'/>
+              <b:includable id='commentDeleteIcon'/>
+              <b:includable id='feedLinks'/>
+              <b:includable id='mobile-index-post'/>
+              <b:includable id='feedLinksBody'/>
+              <b:includable id='comments' var='post'/>
+
+            </b:widget>
+          </b:section>
+        </div>
+        
+        <div class="col-sm-3">
+          
+          <!--Search Box Start -->
+          <div class="panel panel-default">
+            <form expr:action='data:blog.homepageUrl + &quot;search/&quot;' id='searchform' method='get'>
+              <div class="row">             
+                <div class="col-lg-12">
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" id='q' name='q' />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                    </span>
+                  </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+              </div><!-- /.row -->
+            </form>
+          </div>
+          <!--Search Box End -->
+
+          <b:section class='section2' id='sidebar'>        
+            <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts'>          
+              <b:includable id='main'>
+                <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
+                  <!-- List group -->
+                  <ul class="list-group">
+                    <b:loop values='data:posts' var='post'>
+                      <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>
+                    </b:loop>
+                  </ul>
                 </div>
-              </b:loop>
-            </b:includable>
-            
-            <b:includable id='nextprev'>
-            <div class="row">
-              <b:if cond='data:olderPageUrl'>
-                <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:olderPageUrl'><data:olderPageTitle/></a></div>
-              </b:if>
-              <b:if cond='data:blog.pageType != &quot;index&quot;'>
-                <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" href='/'>Home</a></div>                
-              </b:if>
-              <b:if cond='data:newerPageUrl'>
-                <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:newerPageUrl'><data:newerPageTitle/></a></div>
-              </b:if>
-            </div>
-            <br />
-            </b:includable>
-            
-            <b:includable id='shareButtons'/>
-            <b:includable id='backlinks'/>
-            <b:includable id='status-message'/>
-            <b:includable id='comment-form'/>
-            <b:includable id='backlinkDeleteIcon'/>
-            <b:includable id='mobile-nextprev'/>
-            <b:includable id='postQuickEdit'/>
-            <b:includable id='commentDeleteIcon'/>
-            <b:includable id='feedLinks'/>
-            <b:includable id='mobile-index-post'/>
-            <b:includable id='feedLinksBody'/>
-            <b:includable id='comments' var='post'/>
-
-          </b:widget>
-        </b:section>
-        
-        
-        <b:section class='col-sm-3' id='sidebar'>        
-          <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts'>          
-            <b:includable id='main'>
-              <!--Search Box | TODO: Remove it later | Start -->
-              <div class="panel panel-default">
-                <form expr:action='data:blog.homepageUrl + &quot;search/&quot;' id='searchform' method='get'>
-                  <div class="row">             
-                    <div class="col-lg-12">
-                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" id='q' name='q' />
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                        </span>
-                      </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
-                  </div><!-- /.row -->
-                </form>
-              </div>
-              <!--Search Box | TODO: Remove it later | End -->
-
-              <div class="panel panel-default">
-                <!-- Default panel contents -->
-                <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
-                <!-- List group -->
-                <ul class="list-group">
-                  <b:loop values='data:posts' var='post'>
-                    <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>                                                
-                  </b:loop>
-                </ul>
-              </div>
-            </b:includable>
-          </b:widget>
-        </b:section>
-        
+              </b:includable>
+            </b:widget>
+          </b:section>
+        </div>
       </div> <!-- /row -->
     </div> <!-- /container -->
   </div> <!-- /container theme-showcase-->
