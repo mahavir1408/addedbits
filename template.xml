@@ -79,14 +79,17 @@
     <div class="top-bar"></div>
     <div class="container">
       <div class="navbar-header">
+        <!--Uncomment it to display navbar for later 
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
+        -->
         <a class="header-logo" href="/"><img src="https://760e223fee634973f0268168cc932fc26834b215.googledrive.com/host/0BzNuNsgwJPZ5Vi1vZGI3bnlOVzA" /></a>
       </div>
+      <!--Uncomment it to display navbar for later 
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="active"><a href="">Home</a></li>
@@ -104,7 +107,7 @@
             </ul>
           </li>
         </ul>
-      </div><!--/.nav-collapse -->
+      </div>--><!--/.nav-collapse -->
     </div>
   </div>
   <!-- Fixed navbar -->
@@ -176,7 +179,7 @@
         </div>
         
         <div class="col-sm-3">
-          
+
           <!--Search Box Start -->
           <div class="panel panel-default">
             <form expr:action='data:blog.homepageUrl + &quot;search/&quot;' id='searchform' method='get'>
@@ -220,7 +223,7 @@
     <div class="container">
       <a class="footer-logo" href="/"><img src="https://760e223fee634973f0268168cc932fc26834b215.googledrive.com/host/0BzNuNsgwJPZ5Vi1vZGI3bnlOVzA" /></a>
       <p>
-        Copyright &#169; 2013 addedbits.com. All rights reserved, the content is copyrighted to Mahavir Munot - <a href='#' title='addedbits Advertisement'>Advertise</a>
+        Copyright &#169; 2015 addedbits.com. All rights reserved, the content is copyrighted to Mahavir Munot <!--- <a href='#' title='addedbits Advertisement'>Advertise</a>-->
       </p>
     </div>
   </div>
