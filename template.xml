@@ -128,12 +128,14 @@
                   <div class="thumbnail">
                     <div class="caption">
                       <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
-                      <p>
-                        <strong>Tag(s): </strong>
-                        <b:loop var="label" values="data:post.labels">
-                          <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
-                        </b:loop>
-                      </p>
+                      <b:if cond='data:post.labels'> 
+                        <p>
+                          <strong>Tag(s): </strong>
+                          <b:loop var="label" values="data:post.labels">
+                            <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
+                          </b:loop>
+                        </p>
+                      </b:if>
                       <p class="post">
                         <data:post.body/>
                         <data:post.dateHeader/>
