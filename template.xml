@@ -134,7 +134,15 @@
                           <a expr:href='data:label.url' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
                         </b:loop>
                       </p>
-                      <p class="post"><data:post.body/><data:post.dateHeader/></p>
+                      <p class="post">
+                        <data:post.body/>
+                        <data:post.dateHeader/>
+                        <b:if cond='data:post.hasJumpLink'>
+                          <a expr:href='data:post.url' expr:title='data:post.title'>
+                            <data:post.jumpText/>
+                          </a>
+                        </b:if>
+                      </p>
                       <p>
                         <a class="btn btn-twitter"><i class="fa fa-twitter"></i></a>
                         <a class="btn btn-github"><i class="fa fa-github"></i></a>
