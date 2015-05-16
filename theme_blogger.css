@@ -1,16 +1,16 @@
 @import url(http://fonts.googleapis.com/css?family=Muli);
 body {
-padding-top: 70px;
-background: url(https://lh3.googleusercontent.com/-hfOvs79mpYE/VUxUkpKS6tI/AAAAAAAAAEU/H5Hu5rYZOuU/s426/bg1.gif) repeat scroll 0% 0% transparent;
+  padding-top: 70px;
+  background: url(https://lh3.googleusercontent.com/-hfOvs79mpYE/VUxUkpKS6tI/AAAAAAAAAEU/H5Hu5rYZOuU/s426/bg1.gif) repeat scroll 0% 0% transparent;
 }
 h1, h2 {
-    color: #333333;
-    font-family: Helvetica,Arial;
-    font-size: 36px;
-    font-weight: bold;
-    line-height: 1.1em;
-    padding-bottom: 5px;
-    text-shadow: 0 1px 0 #FFFFFF;
+  color: #333333;
+  font-family: Helvetica,Arial;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.1em;
+  padding-bottom: 5px;
+  text-shadow: 0 1px 0 #FFFFFF;
 }
 .theme-dropdown .dropdown-menu {
   display: block;
@@ -28,70 +28,70 @@ h1, h2 {
 }
 
 .caption {
-color: #1E1E1E;
-font-family: 'Muli',Helvetica,Arial,Georgia,Times New Roman;
-font-size: 18px;
-line-height: 24px;
-text-align: justify;
-text-shadow: 0 1px 0 #FFFFFF;
+  color: #1E1E1E;
+  font-family: 'Muli',Helvetica,Arial,Georgia,Times New Roman;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: justify;
+  text-shadow: 0 1px 0 #FFFFFF;
 }
 
 .caption h2{
-color: #333;
-font-family: Helvetica,Arial;
-font-size: 36px;
-font-weight: bold;
-line-height: 1.1em;
-padding-bottom: 5px;
-text-shadow: 0 1px 0 #fff;
-text-align: left;
+  color: #333;
+  font-family: Helvetica,Arial;
+  font-size: 36px;
+  font-weight: bold;
+  line-height: 1.1em;
+  padding-bottom: 5px;
+  text-shadow: 0 1px 0 #fff;
+  text-align: left;
 }
 
 .top-bar {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: rgba(0, 0, 0, 0);
-    background-image: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png);
-    background-origin: padding-box;
-    background-position: center top;
-    background-repeat: repeat;
-    background-size: auto auto;
-    height: 3px;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 9;
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png);
+  background-origin: padding-box;
+  background-position: center top;
+  background-repeat: repeat;
+  background-size: auto auto;
+  height: 3px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 9;
 }
 
 .plain-bar {
-background: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png) repeat scroll 0% 0% transparent;
-padding-top: 2px;
+  background: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png) repeat scroll 0% 0% transparent;
+  padding-top: 2px;
 }
 
 .footer {
-color:#FBFBFB;
-background-color:#FBFBFB;
-padding-bottom:0px;
+  color:#FBFBFB;
+  background-color:#FBFBFB;
+  padding-bottom:0px;
 }
 .footer p {
-    margin: 20px 0;
+  margin: 20px 0;
 	color: #999999;
 	float:left;
 }
 .header-logo {
-padding-left: 15px;
-padding-top: 15px;
-float:left;
+  padding-left: 15px;
+  padding-top: 15px;
+  float:left;
 }
 .footer-logo {
-padding-right: 20px;
-padding-top: 15px;
-float:left;
+  padding-right: 20px;
+  padding-top: 15px;
+  float:left;
 }
 
 .box-heading {
-color: #6E6E6E !important;
-font-weight: bold;
+  color: #6E6E6E !important;
+  font-weight: bold;
 }
 
 .breadcrumb {
@@ -119,9 +119,9 @@ font-weight: bold;
   text-shadow: 0 1px 0 #ffffff;
 }
 .breadcrumb > li + li:before {
-    color: #CCCCCC;
-    content: "\00BB";
-    padding: 0 5px;
+  color: #CCCCCC;
+  content: "\00BB";
+  padding: 0 5px;
 }
 .breadcrumb .divider {  
   color: #999999;
@@ -130,6 +130,18 @@ font-weight: bold;
   color: #333333;
 }
 .navbar-nav {
-    margin: 0 -15px !important;
-    background-color: #fbfbfb !important;
+  margin: 0 -15px !important;
+  background-color: #fbfbfb !important;
+}
+.label {
+  border-radius: 0.25em;
+  color: #fff;
+  display: inline;
+  font-size: 75%;
+  font-weight: normal!important;
+  line-height: 1;
+  padding: 0.2em 0.6em 0.3em;
+  text-align: center;
+  vertical-align: baseline;
+  white-space: nowrap;
 }
