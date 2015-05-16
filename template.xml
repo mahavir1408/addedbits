@@ -151,7 +151,20 @@
     .navbar-nav {
         margin: 0 -15px !important;
         background-color: #fbfbfb !important;
-    }]]></b:skin>
+    }
+    .label {
+      border-radius: 0.25em;
+      color: #fff;
+      display: inline;
+      font-size: 75%;
+      font-weight: normal!important;
+      line-height: 1;
+      padding: 0.2em 0.6em 0.3em;
+      text-align: center;
+      vertical-align: baseline;
+      white-space: nowrap;
+    }
+    ]]></b:skin>
     <style type='text/css'> 
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css);
@@ -229,7 +242,7 @@
                           </b:loop>
                         </p>
                       </b:if>
-                      <p class="post">
+                      <p>
                         <data:post.body/>
                         <data:post.dateHeader/>
                         <b:if cond='data:post.hasJumpLink'>
