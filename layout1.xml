@@ -17,138 +17,150 @@
       </title>
     </b:if>
     <b:include data='blog' name='all-head-content'/>
-    &lt;style type=&quot;text/css&quot;&gt;&lt;!-- /*<b:skin><![CDATA[*/]]></b:skin>
+    &lt;style type=&quot;text/css&quot;&gt;&lt;!-- /*<b:skin><![CDATA[*/@import url(http://fonts.googleapis.com/css?family=Muli);
+    body {
+      padding-top: 70px;
+      background: url(https://lh3.googleusercontent.com/-hfOvs79mpYE/VUxUkpKS6tI/AAAAAAAAAEU/H5Hu5rYZOuU/s426/bg1.gif) repeat scroll 0% 0% transparent;
+    }    
+    .theme-dropdown .dropdown-menu {
+      display: block;
+      position: static;
+      margin-bottom: 20px;
+    }
+    .theme-showcase > p > .btn {
+      margin: 5px 0;
+    }
+    @font-face {
+      font-family: 'Muli';
+      font-style: normal;
+      font-weight: 400;  
+    }
+    .caption {
+      color: #1E1E1E;
+      font-family: 'Muli',Helvetica,Arial,Georgia,Times New Roman;
+      font-size: 18px;
+      line-height: 24px;
+      text-align: justify;
+      text-shadow: 0 1px 0 #FFFFFF;
+    }
+    .caption h1{
+      color: #333;
+      font-family: Helvetica,Arial;
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 1.1em;
+      padding-bottom: 5px;
+      text-shadow: 0 1px 0 #fff;
+      text-align: left;
+    }
+    .caption h2{
+      color: #333;
+      font-family: Helvetica,Arial;
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 1.1em;
+      padding-bottom: 5px;
+      text-shadow: 0 1px 0 #fff;
+      text-align: left;
+    }
+    .top-bar {
+      background-attachment: scroll;
+      background-clip: border-box;
+      background-color: rgba(0, 0, 0, 0);
+      background-image: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png);
+      background-origin: padding-box;
+      background-position: center top;
+      background-repeat: repeat;
+      background-size: auto auto;
+      height: 3px;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: 9;
+    }
+    .plain-bar {
+      background: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png) repeat scroll 0% 0% transparent;
+      padding-top: 2px;
+    }
+    .footer {
+      color:#FBFBFB;
+      background-color:#FBFBFB;
+      padding-bottom:0px;
+    }
+    .footer p {
+      margin: 20px 0;
+      color: #999999;
+      float:left;
+    }
+    .header-logo {
+      padding-left: 15px;
+      padding-top: 15px;
+      float:left;
+    }
+    .footer-logo {
+      padding-right: 20px;
+      padding-top: 15px;
+      float:left;
+    }
+    .box-heading {
+      color: #6E6E6E !important;
+      font-weight: bold;
+    }
+    .breadcrumb {
+      padding: 7px 14px;
+      margin: 0 0 18px;
+      background-color: #fbfbfb;
+      background-image: -moz-linear-gradient(top, #ffffff, #f5f5f5);
+      background-image: -ms-linear-gradient(top, #ffffff, #f5f5f5);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f5f5f5));
+      background-image: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
+      background-image: -o-linear-gradient(top, #ffffff, #f5f5f5);
+      background-image: linear-gradient(to bottom, #ffffff, #f5f5f5);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
+      border: 1px solid #ddd;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      -webkit-box-shadow: inset 0 1px 0 #ffffff;
+      -moz-box-shadow: inset 0 1px 0 #ffffff;
+      box-shadow: inset 0 1px 0 #ffffff;
+    }
+    .breadcrumb > li {
+      display: inline-block;
+      text-shadow: 0 1px 0 #ffffff;
+    }
+    .breadcrumb > li + li:before {
+      color: #CCCCCC;
+      content: "\00BB";
+      padding: 0 5px;
+    }
+    .breadcrumb .divider {  
+      color: #999999;
+    }
+    .breadcrumb .active a {
+      color: #333333;
+    }
+    .navbar-nav {
+      margin: 0 -15px !important;
+      background-color: #fbfbfb !important;
+    }
+    .label {
+      border-radius: 0.25em;
+      color: #fff;
+      display: inline;
+      font-size: 75%;
+      font-weight: normal!important;
+      line-height: 1;
+      padding: 0.2em 0.6em 0.3em;
+      text-align: center;
+      vertical-align: baseline;
+      white-space: nowrap;
+    }
+    ]]></b:skin>
     <style type='text/css'> 
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css);
-      /* Sticky footer styles
-      -------------------------------------------------- */
-      html {
-        position: relative;
-        min-height: 100%;
-      }
-      body {
-        /* Margin bottom by footer height */
-        margin-bottom: 60px;
-      }
-      .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        /* Set the fixed height of the footer here */
-        height: 60px;
-        background-color: #f5f5f5;
-      }
-
-
-      /* Custom page CSS
-      -------------------------------------------------- */
-      /* Not required for template or sticky footer method. */
-
-      body > .container {
-        padding: 0px 15px 0;
-      }
-      .container .text-muted {
-        margin: 20px 0;
-      }
-
-      .footer > .container {
-        padding-right: 15px;
-        padding-left: 15px;
-      }
-
-      code {
-        font-size: 80%;
-      }
-      .btn.active, .btn:active {margin:5px !important;}
-      @import url(http://fonts.googleapis.com/css?family=Muli);
-body {
-padding-top: 70px;
-background: url(https://lh3.googleusercontent.com/-hfOvs79mpYE/VUxUkpKS6tI/AAAAAAAAAEU/H5Hu5rYZOuU/s426/bg1.gif) repeat scroll 0% 0% transparent;
-}
-h1, h2 {
-    color: #333333;
-    font-family: Helvetica,Arial;
-    font-size: 36px;
-    font-weight: bold;
-    line-height: 1.1em;
-    padding-bottom: 5px;
-    text-shadow: 0 1px 0 #FFFFFF;
-}
-.theme-dropdown .dropdown-menu {
-  display: block;
-  position: static;
-  margin-bottom: 20px;
-}
-
-.theme-showcase > p > .btn {
-  margin: 5px 0;
-}
-@font-face {
-  font-family: 'Muli';
-  font-style: normal;
-  font-weight: 400;  
-}
-
-.post {
-color: #1E1E1E;
-font-family: 'Muli',Helvetica,Arial,Georgia,Times New Roman;
-font-size: 16px;
-line-height: 24px;
-text-align: justify;
-text-shadow: 0 1px 0 #FFFFFF;
-}
-
-.top-bar {
-    background-attachment: scroll;
-    background-clip: border-box;
-    background-color: rgba(0, 0, 0, 0);
-    background-image: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png);
-    background-origin: padding-box;
-    background-position: center top;
-    background-repeat: repeat;
-    background-size: auto auto;
-    height: 3px;
-    position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: 9;
-}
-
-.plain-bar {
-background: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png) repeat scroll 0% 0% transparent;
-padding-top: 2px;
-}
-
-.footer {
-color:#FBFBFB;
-background-color:#FBFBFB;
-padding-bottom:0px;
-}
-.footer p {
-    margin: 20px 0;
-  color: #999999;
-  float:left;
-}
-.header-logo {
-padding-left: 15px;
-padding-top: 15px;
-float:left;
-}
-.footer-logo {
-padding-right: 20px;
-padding-top: 15px;
-float:left;
-}
-
-.box-heading {
-color: #6E6E6E !important;
-font-weight: bold;
-}
-.navbar-nav {
-    margin: 0 -15px !important;
-    background-color: #fbfbfb !important;
-}
     </style>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="http://lipis.github.io/bootstrap-social/bootstrap-social.css" />
@@ -174,7 +186,9 @@ font-weight: bold;
           <span class="icon-bar"></span>
         </button>
         -->
+        <!--Uncomment it to display logo for later 
         <a class="header-logo" href="/"><img src="https://lh3.googleusercontent.com/-cAbKmo6eZc8/VUxc0C2A2tI/AAAAAAAAAFw/FmSQ9ldZ2-Q/w426-h237/logo.png" /></a>
+        -->
       </div>
       <!--Uncomment it to display navbar for later 
       <div class="navbar-collapse collapse">
@@ -214,7 +228,11 @@ font-weight: bold;
                 <b:loop values='data:posts' var='post'>               
                   <div class="thumbnail">
                     <div class="caption">
-                      <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+                      <b:if cond='data:blog.pageType != "index"'>
+                        <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
+                      <b:else/>
+                        <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+                      </b:if>                      
                       <b:if cond='data:post.labels'> 
                         <p>
                           <strong>Tag(s): </strong>
@@ -223,7 +241,7 @@ font-weight: bold;
                           </b:loop>
                         </p>
                       </b:if>
-                      <p class="post">
+                      <p>
                         <data:post.body/>
                         <data:post.dateHeader/>
                         <b:if cond='data:post.hasJumpLink'>
@@ -244,18 +262,19 @@ font-weight: bold;
               </b:includable>
               
               <b:includable id='nextprev'>
-              <div class="row">
+              <nav>
+                <ul class="pager">
                 <b:if cond='data:olderPageUrl'>
-                  <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:olderPageUrl'><data:olderPageTitle/></a></div>
+                  <li><a expr:href='data:olderPageUrl'><data:olderPageTitle/></a></li>
                 </b:if>
                 <b:if cond='data:blog.pageType != &quot;index&quot;'>
-                  <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" href='/'>Home</a></div>                
+                  <li><a href='/'>Home</a></li>                
                 </b:if>
                 <b:if cond='data:newerPageUrl'>
-                  <div class="col-md-4"><a role="button" class="btn btn-primary btn-lg active" expr:href='data:newerPageUrl'><data:newerPageTitle/></a></div>
+                  <li><a expr:href='data:newerPageUrl'><data:newerPageTitle/></a></li>
                 </b:if>
-              </div>
-              <br />
+                </ul>
+              </nav>
               </b:includable>
               
               <b:includable id='shareButtons'/>
@@ -284,6 +303,7 @@ font-weight: bold;
                 <div class="col-lg-12">
                   <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search" id='q' name='q' />
+                    <input name='max-results' value="10" type='hidden'/>
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                     </span>
@@ -318,7 +338,9 @@ font-weight: bold;
   <div class="footer">
     <div class="plain-bar"></div>
     <div class="container">
+      <!--Uncomment it to display logo for later 
       <a class="footer-logo" href="/"><img src="https://lh3.googleusercontent.com/-cAbKmo6eZc8/VUxc0C2A2tI/AAAAAAAAAFw/FmSQ9ldZ2-Q/w426-h237/logo.png" /></a>
+      -->
       <p>
         Copyright &#169; 2015 addedbits.com. All rights reserved, the content is copyrighted to Mahavir Munot <!--- <a href='#' title='addedbits Advertisement'>Advertise</a>-->
       </p>
