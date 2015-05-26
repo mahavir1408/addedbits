@@ -390,18 +390,18 @@
         var me = this, blogId, postId;
 
         var settings = $.extend(true,{
-          url: 'http://sandbox-mahavir-munot.blogspot.in/',
+          url: '',
           postId:'',
           labels:[],
           title:'Related Posts: ',
-          itemClass: 'panel-body',
-          //wrapperClass: 'panel-body1',
+          itemClass: 'related_item',
+          wrapperClass: 'related_items_wapper',
           titleClass: 'title',
           shuffle:true,
           thumbUsePost:true,
-          thumbWidth:64,
-          thumbHeight:64,
-          maxPosts: 3
+          thumbWidth:100,
+          thumbHeight:75,
+          maxPosts: 6
         },config);
 
         if(!$.isArray(settings.labels)){
@@ -411,7 +411,7 @@
 
         function init(){
           $.ajax({
-            url: settings.url + '/feeds/posts/default?alt=json&max-results='+settings.maxPosts,			
+            url: settings.url + '/feeds/posts/default?alt=json&max-results=500',
             type: 'get',
             dataType: "jsonp",
             cache:true,
@@ -424,42 +424,39 @@
               }
               // get related posts
               var posts = findRelatedPosts(data.feed.entry);
-              
-              // add section title			  
-			  me.append('<div class="panel-heading"><h3 class="panel-title">'+settings.title+'</h3></div>');
-              
+              // add section title
+              me.append($('<h2/>').text(settings.title));
+              var wrapper = $('<div/>',{'class':settings.wrapperClass});
               // construct the output
               for (var i = 0; i < posts.length; i++){
-                //console.log(posts[i]);
                 var entry = posts[i];
                 var href = getLink(entry);
                 // the link
                 var link = $('<a/>',{'href':href});
                 // the thumbnail
                 var thumb = findThumbnail(entry,entry.title.$t);
-				//console.log(entry.content.$t);
-				var content = getContent(entry.content.$t);
-
+                // the post title
+                var pTitle = $('<div/>',{'class':settings.titleClass});
                 // the item block
-                var div = $('<div/>',{'class':settings.itemClass});				
-				div.html('<div class="media"><div class="media-left"></div><div class="media-right"><h4 id="media-heading" class="media-heading"></div></div></div>');
+                var div = $('<div/>',{'class':settings.itemClass});
                 // add thumbnail
-                div.find(".media-left").append(thumb);
+                div.append(thumb);
                 // wrap the link
-                thumb.wrap(link)
+                thumb.wrap(link);
                 // add post title
-                div.find("h4").append(link.text(entry.title.$t));
-                //pTitle.append();
+                div.append(pTitle);
+                pTitle.append(link.text(entry.title.$t));
                 // add the item block
-				div.find(".media-right").append(content);
-                me.append(div);
+                wrapper.append(div);
                 div.click(function() { window.location = href; })
-              }              
+              }
+              me.append(wrapper);
+              // clear the layout
+              me.append('<div style="clear:both;"></div>');
             }
           });   
         }
 
-		function getContent(con){ var content = $(con).text().substring(0,155);return (content)?content:"No description available!!";}
         // gets the entry link
         function getLink(entry){
           var href = '#';
@@ -544,7 +541,7 @@
     // related posts
     if($('#related_posts').length > 0){
       console.log("Related Post: "+$('#related_posts').length);
-      $('#related_posts').relatedPosts({labels:labels,title:'Related Post'});
+      $('#related_posts').relatedPosts({labels:labels,title:'You may also like -'});
     }
   //]]>
   </script>

@@ -42,7 +42,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <!--
           <a class="header-logo navbar-brand" href="#"><img src="images/logo.png" /></a>
+          -->
         </div>
         <div id="navbar" class="collapse navbar-collapse navbar-right">
           <ul class="nav navbar-nav">
@@ -82,7 +84,26 @@
                 <span class="label label-primary">Java</span>
               </p>
             </div>
-          </div>     
+          </div>  
+          <div id="related_posts"></div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Related Post</h3>
+            </div>
+            <div class="panel-body">
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img alt="64x64" data-src="holder.js/64x64" class="media-object" style="width: 64px; height: 64px;" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PGRlZnMvPjxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjEyLjUiIHk9IjMyIiBzdHlsZT0iZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+NjR4NjQ8L3RleHQ+PC9nPjwvc3ZnPg==" data-holder-rendered="true">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading" id="media-heading">Media heading<a href="#media-heading" class="anchorjs-link"><span class="anchorjs-icon"></span></a></h4>
+                  Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- Left column end -->
 
@@ -110,7 +131,9 @@
     <footer class="footer">
       <div class="plain-bar"></div>
       <div class="container">
+        <!--
         <a class="footer-logo" href="#"><img src="images/logo.png" /></a>
+        -->
         <p class="text-muted">Place sticky footer content here.</p>
       </div>
     </footer>
@@ -120,6 +143,170 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- comment out below if you have jQuery library loaded already -->
+  <script type="text/javascript">
+    //<![CDATA[
+    (function($){
+      $.fn.relatedPosts=function(config){
+        var me = this, blogId, postId;
+
+        var settings = $.extend(true,{
+          url: 'http://sandbox-mahavir-munot.blogspot.in/',
+          postId:'',
+          labels:[],
+          title:'Related Posts: ',
+          itemClass: 'related_item',
+          wrapperClass: 'related_items_wapper',
+          titleClass: 'title',
+          shuffle:true,
+          thumbUsePost:true,
+          thumbWidth:100,
+          thumbHeight:75,
+          maxPosts: 2
+        },config);
+
+        if(!$.isArray(settings.labels)){
+          settings.labels = settings.labels.trim().split(',');
+        }
+        return init();
+
+        function init(){
+          $.ajax({
+            url: settings.url + '/feeds/posts/default?alt=json&max-results='+settings.maxPosts,
+            type: 'get',
+            dataType: "jsonp",
+            cache:true,
+            success: function(data){
+              // get the blog feed id
+              blogId = data.feed.id.$t;
+              if(settings.postId !== ''){
+                // get the current post id
+                postId = blogId + '.post-' + settings.postId;
+              }
+              // get related posts
+              var posts = findRelatedPosts(data.feed.entry);
+              
+              // add section title
+              me.append($('<h2/>').text(settings.title));
+              var wrapper = $('<div/>',{'class':settings.wrapperClass});
+              // construct the output
+              for (var i = 0; i < posts.length; i++){                
+                var entry = posts[i];
+                var href = getLink(entry);
+                // the link
+                var link = $('<a/>',{'href':href});
+                // the thumbnail
+                var thumb = findThumbnail(entry,entry.title.$t);
+                // the post title
+                var pTitle = $('<div/>',{'class':settings.titleClass});
+                // the item block
+                var div = $('<div/>',{'class':settings.itemClass});
+                // add thumbnail
+                div.append(thumb);
+                // wrap the link
+                thumb.wrap(link);
+                // add post title
+                div.append(pTitle);
+                pTitle.append(link.text(entry.title.$t));
+                // add the item block
+                wrapper.append(div);
+                div.click(function() { window.location = href; })
+              }
+              me.append(wrapper);
+              // clear the layout
+              me.append('<div style="clear:both;"></div>');
+            }
+          });   
+        }
+
+        // gets the entry link
+        function getLink(entry){
+          var href = '#';
+          $.each(entry.link, function(i, v){
+            if(v.rel=='alternate'){
+              href = v.href;
+              return false;
+            };
+          });
+          return href;
+        }
+
+        // find related entries
+        function findRelatedPosts(entries){
+          var posts = [];
+          var cats = settings.labels;
+
+          for (var i = 0; i < entries.length; i++){
+            if(!matchCurrentPost(entries[i])){    
+              if(matchCategory(entries[i],cats)){
+                posts.push(entries[i]);
+              }
+            }
+          }
+
+          // shuffle array
+          if(settings.shuffle){
+            posts.sort(function() { return 0.5 - Math.random(); });
+          }
+          return posts.slice(0,settings.maxPosts);
+        }
+
+        function findThumbnail(entry, title){
+          if(settings.thumbUsePost){
+            if(entry.content){
+              var div = $('<div/>').html(entry.content.$t);
+              var imgs = div.find('img');
+              if(imgs.length > 0){     
+                return $('<img/>',{'src':imgs[0].src, 'alt': imgs[0].alt, 'title': title, 'width':settings.thumbWidth,'height':settings.thumbHeight});
+              }
+            }
+          }else{
+            return $('<img/>',{'src':entry.media$thumbnail.url,'title': title,'alt':title,'width':entry.media$thumbnail.width,'height':entry.media$thumbnail.height});
+          }
+        }
+
+        function matchCurrentPost(entry){
+          var match = false;
+          if(postId){
+            var id = entry.id.$t
+            match = (id == postId);    
+          }else{
+            var href = location.href.replace(location.hash,'');
+            href = href.split('?')[0].toLowerCase();
+            $.each(entry.link, function(i,v){
+              if(v.rel == 'alternate'){
+                if(v.href.toLowerCase() == href){
+                  match = true;
+                  return false;
+                }
+              }
+            });
+          }
+          return match;
+        }
+
+        // find any matched category
+        function matchCategory(entry, tags){
+          if(entry.category){
+            for(var i = 0; i < entry.category.length; i++){
+              var tag = entry.category[i].term;
+              if($.inArray(tag,tags) >= 0){
+                return true;
+              }
+            }    
+          }
+          return false;
+        }
+      };
+    })(jQuery);
+
+    // related posts
+    if($('#related_posts').length > 0){
+      console.log("Related Post: "+$('#related_posts').length);
+      $('#related_posts').relatedPosts({labels:['php'],title:'You may also like -'});
+    }
+  //]]>
+  </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
