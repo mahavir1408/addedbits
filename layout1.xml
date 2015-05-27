@@ -422,7 +422,7 @@
 
         function init(){
           $.ajax({
-            url: settings.url + 'feeds/posts/default?alt=json&max-results='+settings.maxPosts,			
+            url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,			
             type: 'get',
             dataType: "jsonp",
             cache:true,
