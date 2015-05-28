@@ -14,8 +14,12 @@
     <b:include data='blog' name='all-head-content'/>
     &lt;style type=&quot;text/css&quot;&gt;&lt;!-- /*<b:skin><![CDATA[*/@import url(http://fonts.googleapis.com/css?family=Muli);
     body {
+      font-family: Georgia;
+      background-image: url('http://lh3.googleusercontent.com/-A09rQfVhbII/VWbvkCIA6WI/AAAAAAAAAGg/qqYamepsrsw/s79-no/addedbits-background-image.png');
+      background-repeat: repeat;
+      background-color: #ffffff;
+      color: #333333;
       padding-top: 70px;
-      background: url(https://lh3.googleusercontent.com/-hfOvs79mpYE/VUxUkpKS6tI/AAAAAAAAAEU/H5Hu5rYZOuU/s426/bg1.gif) repeat scroll 0% 0% transparent;
     }    
     .theme-dropdown .dropdown-menu {
       display: block;
@@ -62,7 +66,7 @@
       background-attachment: scroll;
       background-clip: border-box;
       background-color: rgba(0, 0, 0, 0);
-      background-image: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png);
+      background-image: url('http://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png');
       background-origin: padding-box;
       background-position: center top;
       background-repeat: repeat;
@@ -74,7 +78,7 @@
       z-index: 9;
     }
     .plain-bar {
-      background: url(https://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png) repeat scroll 0% 0% transparent;
+      background: url('http://lh3.googleusercontent.com/--y49xiXoG7g/VUxU3bhMF5I/AAAAAAAAAE4/rxK5kCGxE08/w426-h237/bar.png') repeat scroll 0% 0% transparent;
       padding-top: 2px;
     }
     .footer {
@@ -233,11 +237,18 @@
                     <b:else/>
                       <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
                     </b:if>                      
-                    <b:if cond='data:post.labels'> 
+                    <b:if cond='data:post.labels'>
+                      <!--Labels array to store labels for showing related post -->
+                      <b:if cond='data:blog.pageType == "item"'>
+                        <script>var labels = [];</script>
+                      </b:if>
                       <p>
                         <strong>Tag(s): </strong>
                         <b:loop var="label" values="data:post.labels">
-                          <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>
+                          <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
+                          <b:if cond='data:blog.pageType == "item"'>
+                            <script>labels.push("<data:label.name/>");</script>
+                          </b:if>
                         </b:loop>
                       </p>
                     </b:if>
@@ -263,9 +274,7 @@
 
                 <b:if cond='data:blog.pageType == &quot;item&quot;'>
                   <!-- related posts -->
-                  <div id='related_posts' class="panel panel-default"></div>
-                  <!-- Optimize the below redundant code -->
-                  <script>var labels = &#39;<b:loop values='data:post.labels' var='label'><data:label.name/><b:if cond='data:label.isLast != &quot;true&quot;'>,</b:if></b:loop>&#39;;</script>
+                  <div id='related_posts'></div>                  
                 </b:if>
 
               </b:loop>
@@ -394,172 +403,178 @@
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'/>
 
   <!-- comment out below if you have jQuery library loaded already -->
-  <script type="text/javascript">
-    //<![CDATA[
-    (function($){
-      $.fn.relatedPosts=function(config){
-        var me = this, blogId, postId;
+  <b:if cond='data:blog.pageType == "item"'>
+    <script type="text/javascript">
+      //<![CDATA[
+      (function($){
+        $.fn.relatedPosts=function(config){
+          var me = this, blogId, postId;
 
-        var settings = $.extend(true,{
-          url: 'http://sandbox-mahavir-munot.blogspot.in/',
-          postId:'',
-          labels:[],
-          title:'Related Posts: ',
-          itemClass: 'panel-body',
-          //wrapperClass: 'panel-body1',
-          titleClass: 'title',
-          shuffle:true,
-          thumbUsePost:true,
-          thumbWidth:64,
-          thumbHeight:64,
-          maxPosts: 3
-        },config);
+          var settings = $.extend(true,{            
+            url: '',
+            postId:'',
+            labels:[],
+            title:'Related Posts: ',
+            itemClass: 'panel-body',
+            //wrapperClass: 'panel-body1',
+            titleClass: 'title',
+            shuffle:true,
+            thumbUsePost:true,
+            thumbWidth:64,
+            thumbHeight:64,
+            maxPosts: 3
+          },config);
 
-        if(!$.isArray(settings.labels)){
-          settings.labels = settings.labels.trim().split(',');
-        }
-        return init();
-
-        function init(){
-          $.ajax({
-            url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,			
-            type: 'get',
-            dataType: "jsonp",
-            cache:true,
-            success: function(data){
-              // get the blog feed id
-              blogId = data.feed.id.$t;
-              if(settings.postId !== ''){
-                // get the current post id
-                postId = blogId + '.post-' + settings.postId;
-              }
-              // get related posts
-              var posts = findRelatedPosts(data.feed.entry);
-              
-              // add section title			  
-			  me.append('<div class="panel-heading"><h3 class="panel-title">'+settings.title+'</h3></div>');
-              
-              // construct the output
-              for (var i = 0; i < posts.length; i++){
-                //console.log(posts[i]);
-                var entry = posts[i];
-                var href = getLink(entry);
-                // the link
-                var link = $('<a/>',{'href':href});
-                // the thumbnail
-                var thumb = findThumbnail(entry,entry.title.$t);
-				//console.log(entry.content.$t);
-				var content = getContent(entry.content.$t);
-
-                // the item block
-                var div = $('<div/>',{'class':settings.itemClass});				
-				div.html('<div class="media"><div class="media-left"></div><div class="media-right"><h4 id="media-heading" class="media-heading"></div></div></div>');
-                // add thumbnail
-                div.find(".media-left").append(thumb);
-                // wrap the link
-                thumb.wrap(link)
-                // add post title
-                div.find("h4").append(link.text(entry.title.$t));
-                //pTitle.append();
-                // add the item block
-				div.find(".media-right").append(content);
-                me.append(div);
-                div.click(function() { window.location = href; })
-              }              
-            }
-          });   
-        }
-
-		function getContent(con){ var content = $(con).text().substring(0,155);return (content)?content:"No description available!!";}
-        // gets the entry link
-        function getLink(entry){
-          var href = '#';
-          $.each(entry.link, function(i, v){
-            if(v.rel=='alternate'){
-              href = v.href;
-              return false;
-            };
-          });
-          return href;
-        }
-
-        // find related entries
-        function findRelatedPosts(entries){
-          var posts = [];
-          var cats = settings.labels;
-
-          for (var i = 0; i < entries.length; i++){
-            if(!matchCurrentPost(entries[i])){    
-              if(matchCategory(entries[i],cats)){
-                posts.push(entries[i]);
-              }
-            }
+          if(!$.isArray(settings.labels)){
+            settings.labels = settings.labels.trim().split(',');
           }
+          return init();
 
-          // shuffle array
-          if(settings.shuffle){
-            posts.sort(function() { return 0.5 - Math.random(); });
-          }
-          return posts.slice(0,settings.maxPosts);
-        }
+          function init(){
+            $.ajax({
+              url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,			
+              type: 'get',
+              dataType: "jsonp",
+              cache:true,
+              success: function(data){
+                // get the blog feed id
+                blogId = data.feed.id.$t;
+                if(settings.postId !== ''){
+                  // get the current post id
+                  postId = blogId + '.post-' + settings.postId;
+                }
+                // get related posts
+                var posts = findRelatedPosts(data.feed.entry);
 
-        function findThumbnail(entry, title){
-          if(settings.thumbUsePost){
-            if(entry.content){
-              var div = $('<div/>').html(entry.content.$t);
-              var imgs = div.find('img');
-              if(imgs.length > 0){     
-                return $('<img/>',{'src':imgs[0].src, 'alt': imgs[0].alt, 'title': title, 'width':settings.thumbWidth,'height':settings.thumbHeight});
-              }
-            }
-          }else{
-            return $('<img/>',{'src':entry.media$thumbnail.url,'title': title,'alt':title,'width':entry.media$thumbnail.width,'height':entry.media$thumbnail.height});
-          }
-        }
+                var pc = posts.length;
 
-        function matchCurrentPost(entry){
-          var match = false;
-          if(postId){
-            var id = entry.id.$t;
-            match = (id == postId);    
-          }else{
-            var href = location.href.replace(location.hash,'');
-            href = href.split('?')[0].toLowerCase();
-            $.each(entry.link, function(i,v){
-              if(v.rel == 'alternate'){
-                if(v.href.toLowerCase() == href){
-                  match = true;
-                  return false;
+                if(pc>0) {
+                  // add section title	
+                  me.addClass("panel panel-default");
+                  me.append('<div class="panel-heading"><h3 class="panel-title">'+settings.title+'</h3></div>');
+
+                  // construct the output
+                  for (var i = 0; i < pc; i++){                
+                    var entry = posts[i];
+                    var href = getLink(entry);
+                    // the link
+                    var link = $('<a/>',{'href':href});
+                    // the thumbnail
+                    var thumb = findThumbnail(entry,entry.title.$t);
+
+                    var content = getContent(entry.content.$t);
+
+                    // the item block
+                    var div = $('<div/>',{'class':settings.itemClass});				
+                    div.html('<div class="media"><div class="media-left"></div><div class="media-right"><h4 id="media-heading" class="media-heading"></div></div></div>');
+                    // add thumbnail
+                    div.find(".media-left").append(thumb);
+                    // wrap the link
+                    thumb.wrap(link)
+                    // add post title
+                    div.find("h4").append(link.text(entry.title.$t));
+                    //pTitle.append();
+                    // add the item block
+                    div.find(".media-right").append(content);
+                    me.append(div);
+                    div.click(function() { window.location = href; })
+                  }
                 }
               }
+            });   
+          }
+
+          function getContent(con){ var content = $(con).text().substring(0,155);return (content)?content + " ..." :"No description available!!";}
+          // gets the entry link
+          function getLink(entry){
+            var href = '#';
+            $.each(entry.link, function(i, v){
+              if(v.rel=='alternate'){
+                href = v.href;
+                return false;
+              };
             });
+            return href;
           }
-          return match;
-        }
 
-        // find any matched category
-        function matchCategory(entry, tags){
-          if(entry.category){
-            for(var i = 0; i < entry.category.length; i++){
-              var tag = entry.category[i].term;
-              if($.inArray(tag,tags) >= 0){
-                return true;
+          // find related entries
+          function findRelatedPosts(entries){
+            var posts = [];
+            var cats = settings.labels;
+
+            for (var i = 0; i < entries.length; i++){
+              if(!matchCurrentPost(entries[i])){    
+                if(matchCategory(entries[i],cats)){
+                  posts.push(entries[i]);
+                }
               }
-            }    
+            }
+
+            // shuffle array
+            if(settings.shuffle){
+              posts.sort(function() { return 0.5 - Math.random(); });
+            }
+            return posts.slice(0,settings.maxPosts);
           }
-          return false;
+
+          function findThumbnail(entry, title){
+            if(settings.thumbUsePost){
+              if(entry.content){
+                var div = $('<div/>').html(entry.content.$t);
+                var imgs = div.find('img');
+                if(imgs.length > 0){     
+                  return $('<img/>',{'src':imgs[0].src, 'alt': imgs[0].alt, 'title': title, 'width':settings.thumbWidth,'height':settings.thumbHeight});
+                }
+              }
+            }else{
+              return $('<img/>',{'src':entry.media$thumbnail.url,'title': title,'alt':title,'width':entry.media$thumbnail.width,'height':entry.media$thumbnail.height});
+            }
+          }
+
+          function matchCurrentPost(entry){
+            var match = false;
+            if(postId){
+              var id = entry.id.$t;
+              match = (id == postId);    
+            }else{
+              var href = location.href.replace(location.hash,'');
+              href = href.split('?')[0].toLowerCase();            
+              $.each(entry.link, function(i,v){
+                if(v.rel == 'alternate'){                
+                  if(v.href.toLowerCase().replace(/https?:\/\/[^\/]+/i, "") == href.replace(/https?:\/\/[^\/]+/i, "")){                  
+                    match = true;                  
+                  }
+                }
+              });
+            }          
+            return match;
+          }
+
+          // find any matched category
+          function matchCategory(entry, tags){
+            if(entry.category){
+              for(var i = 0; i < entry.category.length; i++){
+                var tag = entry.category[i].term;
+                if($.inArray(tag,tags) >= 0){
+                  return true;
+                }
+              }    
+            }
+            return false;
+          }
+        };
+      })(jQuery);
+
+      // related posts
+      if (!typeof labels === 'undefined') {
+        if(labels.length > 0) {
+          labels = labels.shift();        
+          $('#related_posts').relatedPosts({labels:labels,title:'Related Post',url:"http://sandbox-mahavir-munot.blogspot.in/"});
         }
-      };
-    })(jQuery);
-
-    // related posts
-    if($('#related_posts').length > 0){
-      //console.log("Related Post: "+$('#related_posts').length);
-      $('#related_posts').relatedPosts({labels:labels,title:'Related Post'});
-    }
-  //]]>
-  </script>
-
+      }
+    //]]>
+    </script>
+  </b:if>
 
   <!-- Latest compiled and minified JavaScript -->
   <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'/>
