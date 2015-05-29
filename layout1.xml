@@ -566,7 +566,7 @@
       })(jQuery);
 
       // related posts
-      if (!typeof labels === 'undefined') {
+      if (!(typeof labels === 'undefined') && (typeof labels === 'object')) {		
         if(labels.length > 0) {
           labels = labels.shift();        
           $('#related_posts').relatedPosts({labels:labels,title:'Related Post',url:"http://sandbox-mahavir-munot.blogspot.in/"});
