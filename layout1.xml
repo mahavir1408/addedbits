@@ -37,7 +37,7 @@
     .caption {
       color: #1E1E1E;
       font-family: 'Muli',Helvetica,Arial,Georgia,Times New Roman;
-      font-size: 18px;
+      font-size: 16px;
       line-height: 24px;
       text-align: justify;
       text-shadow: 0 1px 0 #FFFFFF;
@@ -174,7 +174,10 @@
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon'/>
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'/>  
     -->
-    <script src="https://apis.google.com/js/plusone.js"></script>  
+    <script src="https://apis.google.com/js/plusone.js"></script>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
+    <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
   </head>
   <body>
   <!-- Fixed navbar -->
@@ -261,6 +264,7 @@
                         </a>
                       </b:if>
                     </p>
+                    <!--
                     <p>
                       <a class="btn btn-social-icon btn-twitter"><i class="fa fa-twitter"></i></a>
                       <a class="btn btn-social-icon btn-github"><i class="fa fa-github"></i></a>
@@ -268,6 +272,20 @@
                       <a class="btn btn-social-icon btn-linkedin"><i class="fa fa-linkedin"></i></a>
                       <a class="btn btn-social-icon btn-google"><i class="fa fa-google-plus"></i></a>
                       <a class="btn btn-social-icon btn-pinterest"><i class="fa fa-pinterest"></i></a>
+                    </p>
+                    -->
+                    <p>
+                      <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_pinterest_large' title='PinInterest' displayText='Pinterest' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_email_large' title='Email' displayText='Email' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                     </p>
                   </div>
                 </div>
