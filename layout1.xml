@@ -185,23 +185,39 @@
     <div class="top-bar"></div>
     <div class="container">
       <div class="navbar-header">
-        <!--Uncomment it to display navbar for later 
+        
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        -->
+        
         <!--Uncomment it to display logo for later 
         <a class="header-logo" href="/"><img src="https://lh3.googleusercontent.com/-cAbKmo6eZc8/VUxc0C2A2tI/AAAAAAAAAFw/FmSQ9ldZ2-Q/w426-h237/logo.png" /></a>
         -->
       </div>
-      <!--Uncomment it to display navbar for later 
+      <b:section class='navbar-collapse collapse' id='navbar' showaddelement='no'>
+        <b:widget id='LinkList1' locked='false' title='navbar' type='LinkList'>
+          <b:includable id='main'>
+                  <ul class='nav navbar-nav navbar-right'>
+                   <b:loop values='data:links' var='link'>
+                     <b:if cond='data:blog.url==data:link.target'>
+                     <li class='selected'><a expr:href='data:link.target'><data:link.name/></a></li>
+                     <b:else/>
+                     <li class='notselect'><a expr:href='data:link.target' expr:name='&quot;NonCanonicalUrl:&quot;+data:blog.url' expr:rel='&quot;LinkTarget:&quot;+data:link.target' expr:title='&quot;CanonicalUrl:&quot;+data:blog.canonicalUrl'><data:link.name/></a></li>
+                     </b:if>
+                   </b:loop>
+                 </ul>
+            </b:includable>
+        </b:widget>
+      </b:section>
+      <!--Uncomment it to display navbar
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="">Home</a></li>
-          <li><a href="blog.html">Blog</a></li>
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/">About</a></li>
+          <li><a href="/">Contact</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
             <ul class="dropdown-menu">
