@@ -157,6 +157,13 @@
       vertical-align: baseline;
       white-space: nowrap;
     }
+    .highlight {
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+      border-radius: 4px;
+      margin-bottom: 14px;
+      padding: 9px 14px;
+    }
     #comments{width:100%!important;}
     .error-template {padding: 40px 15px;text-align: center;}
     .error-actions {margin-top:15px;margin-bottom:15px;}
@@ -282,7 +289,7 @@
                         <b:if cond='data:blog.pageType == "item"'>
                           <script>var labels = [];</script>
                         </b:if>
-                        <p>
+                        <div class="highlight">
                           <strong>Tag(s): </strong>
                           <b:loop var="label" values="data:post.labels">
                             <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
@@ -290,7 +297,7 @@
                               <script>labels.push("<data:label.name/>");</script>
                             </b:if>
                           </b:loop>
-                        </p>
+                        </div>
                       </b:if>
                       <p>
                         <data:post.body/>
