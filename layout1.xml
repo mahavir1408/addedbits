@@ -284,21 +284,9 @@
                       <b:else/>
                         <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
                       </b:if>                      
-                      <b:if cond='data:post.labels'>
-                        <!--Labels array to store labels for showing related post -->
-                        <b:if cond='data:blog.pageType == "item"'>
-                          <script>var labels = [];</script>
-                        </b:if>
-                        <div class="highlight">
-                          <strong>Tag(s): </strong>
-                          <b:loop var="label" values="data:post.labels">
-                            <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
-                            <b:if cond='data:blog.pageType == "item"'>
-                              <script>labels.push("<data:label.name/>");</script>
-                            </b:if>
-                          </b:loop>
-                        </div>
-                      </b:if>
+                      <div class=''>
+                         By <a expr:href='data:post.authorProfileUrl' title='About the Author' target="_blank"><data:post.author/></a> on <i><data:post.timestamp/></i>
+                      </div> 
                       <p>
                         <data:post.body/>
                         <data:post.dateHeader/>
@@ -307,8 +295,23 @@
                             <data:post.jumpText/>
                           </a>
                         </b:if>
-                      </p>                     
-                      <p>
+                      </p> 
+                      <b:if cond='data:post.labels'>
+                        <!--Labels array to store labels for showing related post -->
+                        <b:if cond='data:blog.pageType == "item"'>
+                          <script>var labels = [];</script>
+                        </b:if>
+                        <p>
+                          <strong>Tag(s): </strong>
+                          <b:loop var="label" values="data:post.labels">
+                            <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
+                            <b:if cond='data:blog.pageType == "item"'>
+                              <script>labels.push("<data:label.name/>");</script>
+                            </b:if>
+                          </b:loop>
+                        </p>
+                      </b:if>                   
+                      <div class="highlight">
                         <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                         <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                         <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
@@ -320,7 +323,7 @@
                         <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                         <span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                         <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                      </p>
+                      </div>
                     </div>
                   </div>
 
