@@ -157,14 +157,21 @@
       vertical-align: baseline;
       white-space: nowrap;
     }
+    .highlight {
+      background-color: #f7f7f9;
+      border: 1px solid #e1e1e8;
+      border-radius: 4px;
+      margin-bottom: 14px;
+      padding: 9px 14px;
+    }
     #comments{width:100%!important;}
     .error-template {padding: 40px 15px;text-align: center;}
     .error-actions {margin-top:15px;margin-bottom:15px;}
     .error-actions .btn { margin-right:10px; }
     ]]></b:skin>
     <style type='text/css'> 
-      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css);
-      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css);
+      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+      @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css);
     </style>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -177,18 +184,20 @@
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'/>  
     -->
     <script src="https://apis.google.com/js/plusone.js"></script>
-    <script type="text/javascript">var switchTo5x=true;</script>
-    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
-    <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
+    <b:if cond='data:blog.pageType != "static_page"'>
+      <script type="text/javascript">var switchTo5x=true;</script>
+      <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
+      <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
+    </b:if>
   </head>
   <body>
   <!-- Fixed navbar -->
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="top-bar"></div>
     <div class="container">
       <div class="navbar-header">
         
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -202,16 +211,16 @@
       <b:section class='navbar-collapse collapse' id='navbar' showaddelement='no'>
         <b:widget id='LinkList1' locked='false' title='navbar' type='LinkList'>
           <b:includable id='main'>
-                  <ul class='nav navbar-nav navbar-right'>
-                   <b:loop values='data:links' var='link'>
-                    <b:if cond='data:blog.canonicalUrl==data:link.target or data:blog.url==data:link.target'>
-                      <li class='active'><a expr:href='data:link.target'><data:link.name/></a></li>
-                     <b:else/>
-                      <li><a expr:href='data:link.target' expr:name='&quot;NonCanonicalUrl:&quot;+data:blog.url' expr:rel='&quot;LinkTarget:&quot;+data:link.target' expr:title='&quot;CanonicalUrl:&quot;+data:blog.canonicalUrl'><data:link.name/></a></li>
-                     </b:if>
-                   </b:loop>
-                 </ul>
-            </b:includable>
+            <ul class='nav navbar-nav navbar-right'>
+              <b:loop values='data:links' var='link'>
+                <b:if cond='data:blog.canonicalUrl==data:link.target or data:blog.url==data:link.target'>
+                  <li class='active'><a expr:href='data:link.target'><data:link.name/></a></li>
+                <b:else/>
+                  <li><a expr:href='data:link.target' expr:name='&quot;NonCanonicalUrl:&quot;+data:blog.url' expr:rel='&quot;LinkTarget:&quot;+data:link.target' expr:title='&quot;CanonicalUrl:&quot;+data:blog.canonicalUrl'><data:link.name/></a></li>
+                </b:if>
+              </b:loop>
+            </ul>
+          </b:includable>
         </b:widget>
       </b:section>
       <!--Uncomment it to display navbar
@@ -235,7 +244,7 @@
         </ul>
       </div>--><!--/.nav-collapse -->
     </div>
-  </div>
+  </nav>
   <!-- Fixed navbar -->
   <div class="container theme-showcase">
     <div class="container">
@@ -245,13 +254,9 @@
               <div class="row">
                   <div class="col-md-12">
                       <div class="error-template">
-                          <h1>
-                              Oops!</h1>
-                          <h2>
-                              404 Not Found</h2>
-                          <div class="error-details">
-                              Sorry, that page doesn't exist!
-                          </div>
+                          <h1>Oops!</h1>
+                          <h2>404 Not Found</h2>
+                          <div class="error-details">Sorry, that page doesn't exist!</div>
                           <div class="error-actions">
                               <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a><a href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
                           </div>
@@ -276,7 +281,20 @@
                         <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
                       <b:else/>
                         <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
-                      </b:if>                      
+                      </b:if>  
+                      <b:if cond='data:blog.pageType != "static_page"'>
+                        <div>
+                           By <a expr:href='data:post.authorProfileUrl' title='About the Author' target="_blank"><data:post.author/></a> on <i><data:post.timestamp/></i>
+                        </div>
+                      </b:if>
+                      <p>
+                        <data:post.body/>                        
+                        <b:if cond='data:post.hasJumpLink'>
+                          <a expr:href='data:post.url' expr:title='data:post.title'>
+                            <data:post.jumpText/>
+                          </a>
+                        </b:if>
+                      </p> 
                       <b:if cond='data:post.labels'>
                         <!--Labels array to store labels for showing related post -->
                         <b:if cond='data:blog.pageType == "item"'>
@@ -292,28 +310,21 @@
                           </b:loop>
                         </p>
                       </b:if>
-                      <p>
-                        <data:post.body/>
-                        <data:post.dateHeader/>
-                        <b:if cond='data:post.hasJumpLink'>
-                          <a expr:href='data:post.url' expr:title='data:post.title'>
-                            <data:post.jumpText/>
-                          </a>
-                        </b:if>
-                      </p>                     
-                      <p>
-                        <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_pinterest_large' title='PinInterest' displayText='Pinterest' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_email_large' title='Email' displayText='Email' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                      </p>
+                      <b:if cond='data:blog.pageType != "static_page"'>
+                        <div class="highlight">
+                          <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_pinterest_large' title='PinInterest' displayText='Pinterest' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_email_large' title='Email' displayText='Email' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <!--<span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>-->
+                          <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        </div>
+                      </b:if>
                     </div>
                   </div>
 
@@ -339,16 +350,15 @@
                   </b:if>
                   </ul>
                 </nav>
-                <b:if cond='data:blog.pageType == "item"'>
-                  <div id="comments"></div>
-                  <script>
-                  gapi.comments.render('comments', {
-                      href: window.location,
-                      width: '824',
-                      first_party_property: 'BLOGGER',
-                      view_type: 'FILTERED_POSTMOD'
-                  });
-                  </script>
+                <b:if cond='data:blog.pageType == "item"'>                  
+                  <div id="googlepluscommentsarea" >
+                    <script type="text/javascript">
+                      /* <![CDATA[ */;
+                      var w=document.getElementById('googlepluscommentsarea').offsetWidth;
+                      document.write('<g:comments href="'+window.location+'" width="'+w+'" height="50" first_party_property="BLOGGER" view_type="FILTERED_POSTMOD"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">Loading Google+ Comments...</span></div></div></g:comments>');/* ]]> */
+                    </script>
+                    <style type="text/css">#googlepluscommentsarea div[id^='___comments_'], #googlepluscommentsarea div[id^='___comments_'] iframe {width: 100% !important;}</style>
+                  </div>
                   <!--        
                   <div style="width: 100%">
                       <div class="g-comments" expr:data-href="data:blog.url" data-width="600" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD"></div>
@@ -368,8 +378,7 @@
               <b:includable id='feedLinks'/>
               <b:includable id='mobile-index-post'/>
               <b:includable id='feedLinksBody'/>
-              <b:includable id='comments' var='post'/>
-              
+              <b:includable id='comments' var='post'/>             
             </b:widget>
           </b:section>
           
@@ -445,7 +454,7 @@
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'/>
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'/>
 
   <!-- comment out below if you have jQuery library loaded already -->
   <b:if cond='data:blog.pageType == "item"'>
@@ -477,7 +486,7 @@
 
           function init(){
             $.ajax({
-              url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,      
+              url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,			
               type: 'get',
               dataType: "jsonp",
               cache:true,
@@ -494,7 +503,7 @@
                 var pc = posts.length;
 
                 if(pc>0) {
-                  // add section title  
+                  // add section title	
                   me.addClass("panel panel-default");
                   me.append('<div class="panel-heading"><h3 class="panel-title">'+settings.title+'</h3></div>');
 
@@ -510,7 +519,7 @@
                     var content = getContent(entry.content.$t);
 
                     // the item block
-                    var div = $('<div/>',{'class':settings.itemClass});       
+                    var div = $('<div/>',{'class':settings.itemClass});				
                     div.html('<div class="media"><div class="media-left"></div><div class="media-right"><h4 id="media-heading" class="media-heading"></div></div></div>');
                     // add thumbnail
                     div.find(".media-left").append(thumb);
@@ -611,7 +620,7 @@
       })(jQuery);
 
       // related posts
-      if (!(typeof labels === 'undefined') && (typeof labels === 'object')) {   
+      if (!(typeof labels === 'undefined') && (typeof labels === 'object')) {		
         if(labels.length > 0) {
           labels = labels.shift();        
           $('#related_posts').relatedPosts({labels:labels,title:'Related Post',url:"http://sandbox-mahavir-munot.blogspot.in/"});
@@ -622,7 +631,7 @@
   </b:if>
 
   <!-- Latest compiled and minified JavaScript -->
-  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'/>
+  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js'/>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
   <script src='http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js'/>
   </body>
