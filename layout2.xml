@@ -183,12 +183,6 @@
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon'/>
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'/>  
     -->
-    <script src="https://apis.google.com/js/plusone.js"></script>
-    <b:if cond='data:blog.pageType != "static_page"'>
-      <script type="text/javascript">var switchTo5x=true;</script>
-      <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
-      <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
-    </b:if>
   </head>
   <body>
   <!-- Fixed navbar -->
@@ -455,7 +449,11 @@
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'/>
-
+  <b:if cond='data:blog.pageType != "static_page"'>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
+    <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
+  </b:if>
   <!-- comment out below if you have jQuery library loaded already -->
   <b:if cond='data:blog.pageType == "item"'>
     <script type="text/javascript">
