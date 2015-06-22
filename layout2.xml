@@ -168,6 +168,34 @@
     .error-template {padding: 40px 15px;text-align: center;}
     .error-actions {margin-top:15px;margin-bottom:15px;}
     .error-actions .btn { margin-right:10px; }
+    
+    .img-wrapper {
+      display: inline-block !important;
+      overflow: hidden;
+    }
+    .img-wrapper a img {
+      display: inline-block !important;
+      overflow: hidden;
+      height: 240px !important; 
+      width: 819px;
+    }
+
+    .img-wrapper img {
+      -webkit-transition: all 0.4s ease;
+      -moz-transition: all 0.4s ease;
+      -ms-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+      vertical-align: middle;
+    }
+
+    .img-wrapper img:hover {
+      transform:scale(1.05);
+      -ms-transform:scale(1.05); /* IE 9 */
+      -moz-transform:scale(1.05); /* Firefox */
+      -webkit-transform:scale(1.05); /* Safari and Chrome */
+      -o-transform:scale(1.05); /* Opera */
+    }
     ]]></b:skin>
     <style type='text/css'> 
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
