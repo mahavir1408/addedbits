@@ -183,21 +183,15 @@
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon'/>
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'/>  
     -->
-    <script src="https://apis.google.com/js/plusone.js"></script>
-    <b:if cond='data:blog.pageType != "static_page"'>
-      <script type="text/javascript">var switchTo5x=true;</script>
-      <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
-      <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
-    </b:if>
-  </head>
-  <body>
+</head>
+<body>
   <!-- Fixed navbar -->
-  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="top-bar"></div>
     <div class="container">
       <div class="navbar-header">
         
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -209,7 +203,7 @@
         -->
       </div>
       <b:section class='navbar-collapse collapse' id='navbar' showaddelement='no'>
-        <b:widget id='LinkList1' locked='false' title='navbar' type='LinkList'>
+        <b:widget id='LinkList1' locked='false' title='navbar' type='LinkList' mobile='yes'>
           <b:includable id='main'>
             <ul class='nav navbar-nav navbar-right'>
               <b:loop values='data:links' var='link'>
@@ -244,7 +238,7 @@
         </ul>
       </div>--><!--/.nav-collapse -->
     </div>
-  </div>
+  </nav>
   <!-- Fixed navbar -->
   <div class="container theme-showcase">
     <div class="container">
@@ -350,16 +344,15 @@
                   </b:if>
                   </ul>
                 </nav>
-                <b:if cond='data:blog.pageType == "item"'>
-                  <div id="comments"></div>
-                  <script>
-                  gapi.comments.render('comments', {
-                      href: window.location,
-                      width: '824',
-                      first_party_property: 'BLOGGER',
-                      view_type: 'FILTERED_POSTMOD'
-                  });
-                  </script>
+                <b:if cond='data:blog.pageType == "item"'>                  
+                  <div id="googlepluscommentsarea" >
+                    <script type="text/javascript">
+                      /* <![CDATA[ */;
+                      var w=document.getElementById('googlepluscommentsarea').offsetWidth;
+                      document.write('<g:comments href="'+window.location+'" width="'+w+'" height="50" first_party_property="BLOGGER" view_type="FILTERED_POSTMOD"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">Loading Google+ Comments...</span></div></div></g:comments>');/* ]]> */
+                    </script>
+                    <style type="text/css">#googlepluscommentsarea div[id^='___comments_'], #googlepluscommentsarea div[id^='___comments_'] iframe {width: 100% !important;}</style>
+                  </div>
                   <!--        
                   <div style="width: 100%">
                       <div class="g-comments" expr:data-href="data:blog.url" data-width="600" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD"></div>
@@ -457,6 +450,12 @@
   <!-- Placed at the end of the document so the pages load faster -->
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'/>
 
+  <b:if cond='data:blog.pageType != "static_page"'>
+    <script type="text/javascript">var switchTo5x=true;</script>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
+    <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
+  </b:if>
+
   <!-- comment out below if you have jQuery library loaded already -->
   <b:if cond='data:blog.pageType == "item"'>
     <script type="text/javascript">
@@ -487,7 +486,7 @@
 
           function init(){
             $.ajax({
-              url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,			
+              url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,      
               type: 'get',
               dataType: "jsonp",
               cache:true,
@@ -504,7 +503,7 @@
                 var pc = posts.length;
 
                 if(pc>0) {
-                  // add section title	
+                  // add section title  
                   me.addClass("panel panel-default");
                   me.append('<div class="panel-heading"><h3 class="panel-title">'+settings.title+'</h3></div>');
 
@@ -520,7 +519,7 @@
                     var content = getContent(entry.content.$t);
 
                     // the item block
-                    var div = $('<div/>',{'class':settings.itemClass});				
+                    var div = $('<div/>',{'class':settings.itemClass});       
                     div.html('<div class="media"><div class="media-left"></div><div class="media-right"><h4 id="media-heading" class="media-heading"></div></div></div>');
                     // add thumbnail
                     div.find(".media-left").append(thumb);
@@ -621,7 +620,7 @@
       })(jQuery);
 
       // related posts
-      if (!(typeof labels === 'undefined') && (typeof labels === 'object')) {		
+      if (!(typeof labels === 'undefined') && (typeof labels === 'object')) {   
         if(labels.length > 0) {
           labels = labels.shift();        
           $('#related_posts').relatedPosts({labels:labels,title:'Related Post',url:"http://sandbox-mahavir-munot.blogspot.in/"});
