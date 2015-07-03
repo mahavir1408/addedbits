@@ -168,6 +168,32 @@
     .error-template {padding: 40px 15px;text-align: center;}
     .error-actions {margin-top:15px;margin-bottom:15px;}
     .error-actions .btn { margin-right:10px; }
+
+    .img-wrapper {
+      display: inline-block !important;
+      overflow: hidden;
+    }
+    .img-wrapper a img {
+      display: inline-block !important;
+      overflow: hidden;
+      height: 240px !important; 
+      width: 819px;
+    }
+    .img-wrapper img {
+      -webkit-transition: all 0.4s ease;
+      -moz-transition: all 0.4s ease;
+      -ms-transition: all 0.4s ease;
+      -o-transition: all 0.4s ease;
+      transition: all 0.4s ease;
+      vertical-align: middle;
+    }
+    .img-wrapper img:hover {
+      transform:scale(1.05);
+      -ms-transform:scale(1.05); /* IE 9 */
+      -moz-transform:scale(1.05); /* Firefox */
+      -webkit-transform:scale(1.05); /* Safari and Chrome */
+      -o-transform:scale(1.05); /* Opera */
+    }
     ]]></b:skin>
     <style type='text/css'> 
       @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
@@ -376,7 +402,8 @@
             </b:widget>
           </b:section>
           
-          <b:section class='col-sm-3' id='sidebar'> 
+          <b:section class='col-sm-3' id='sidebar'>
+
             <b:widget id='HTML1' title='Search' type='HTML' locked='false' mobile='yes'>
               <b:includable id='main'>
                 <!--Search Box Start -->
@@ -398,21 +425,17 @@
                 <!--Search Box End -->
               </b:includable>
             </b:widget>
-            
-            <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' mobile='yes'>          
+
+            <b:widget id='HTML2' locked='false' mobile='yes' title='Search' type='HTML'>
               <b:includable id='main'>
-                <div class="panel panel-default">
-                  <!-- Default panel contents -->
-                  <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
-                  <!-- List group -->
-                  <ul class="list-group">
-                    <b:loop values='data:posts' var='post'>
-                      <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>
-                    </b:loop>
-                  </ul>
+                <div style="margin-bottom:20px;">
+                  <!--Google Plus Profile Start -->
+                  <div class='g-person' data-href='https://plus.google.com/100927912275011853533' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
+                  <!--Google Plus Profile End -->
                 </div>
               </b:includable>
             </b:widget>
+
             <b:widget id='Label1' locked='false' title='Categories' type='Label' mobile='yes'>
               <b:includable id='main'>
                 <div class='panel panel-default'>
@@ -427,6 +450,22 @@
                   </div>
               </b:includable>
             </b:widget>
+
+            <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' mobile='yes'>
+              <b:includable id='main'>
+                <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
+                  <!-- List group -->
+                  <ul class="list-group">
+                    <b:loop values='data:posts' var='post'>
+                      <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>
+                    </b:loop>
+                  </ul>
+                </div>
+              </b:includable>
+            </b:widget>
+
           </b:section>
         </b:if>
       </div> <!-- /row -->

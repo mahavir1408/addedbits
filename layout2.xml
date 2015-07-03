@@ -168,7 +168,7 @@
     .error-template {padding: 40px 15px;text-align: center;}
     .error-actions {margin-top:15px;margin-bottom:15px;}
     .error-actions .btn { margin-right:10px; }
-    
+
     .img-wrapper {
       display: inline-block !important;
       overflow: hidden;
@@ -179,7 +179,6 @@
       height: 240px !important; 
       width: 819px;
     }
-
     .img-wrapper img {
       -webkit-transition: all 0.4s ease;
       -moz-transition: all 0.4s ease;
@@ -188,7 +187,6 @@
       transition: all 0.4s ease;
       vertical-align: middle;
     }
-
     .img-wrapper img:hover {
       transform:scale(1.05);
       -ms-transform:scale(1.05); /* IE 9 */
@@ -211,8 +209,8 @@
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon'/>
     <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'/>  
     -->
-  </head>
-  <body>
+</head>
+<body>
   <!-- Fixed navbar -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="top-bar"></div>
@@ -404,7 +402,8 @@
             </b:widget>
           </b:section>
           
-          <b:section class='col-sm-3' id='sidebar'> 
+          <b:section class='col-sm-3' id='sidebar'>
+
             <b:widget id='HTML1' title='Search' type='HTML' locked='false' mobile='yes'>
               <b:includable id='main'>
                 <!--Search Box Start -->
@@ -426,21 +425,17 @@
                 <!--Search Box End -->
               </b:includable>
             </b:widget>
-            
-            <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' mobile='yes'>          
+
+            <b:widget id='HTML2' locked='false' mobile='yes' title='Search' type='HTML'>
               <b:includable id='main'>
-                <div class="panel panel-default">
-                  <!-- Default panel contents -->
-                  <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
-                  <!-- List group -->
-                  <ul class="list-group">
-                    <b:loop values='data:posts' var='post'>
-                      <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>
-                    </b:loop>
-                  </ul>
+                <div style="margin-bottom:20px;">
+                  <!--Google Plus Profile Start -->
+                  <div class='g-person' data-href='https://plus.google.com/100927912275011853533' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
+                  <!--Google Plus Profile End -->
                 </div>
               </b:includable>
             </b:widget>
+
             <b:widget id='Label1' locked='false' title='Categories' type='Label' mobile='yes'>
               <b:includable id='main'>
                 <div class='panel panel-default'>
@@ -455,6 +450,22 @@
                   </div>
               </b:includable>
             </b:widget>
+
+            <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' mobile='yes'>
+              <b:includable id='main'>
+                <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
+                  <!-- List group -->
+                  <ul class="list-group">
+                    <b:loop values='data:posts' var='post'>
+                      <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>
+                    </b:loop>
+                  </ul>
+                </div>
+              </b:includable>
+            </b:widget>
+
           </b:section>
         </b:if>
       </div> <!-- /row -->
@@ -477,11 +488,13 @@
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'/>
+
   <b:if cond='data:blog.pageType != "static_page"'>
     <script type="text/javascript">var switchTo5x=true;</script>
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"/>
     <script type="text/javascript">stLight.options({publisher:'4f4c0446-7c4f-460e-8073-42a62406e24f', shorten:false});</script>
   </b:if>
+
   <!-- comment out below if you have jQuery library loaded already -->
   <b:if cond='data:blog.pageType == "item"'>
     <script type="text/javascript">
@@ -512,7 +525,7 @@
 
           function init(){
             $.ajax({
-              url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,			
+              url: '/feeds/posts/default/-/'+settings.labels+'?alt=json&max-results='+settings.maxPosts,      
               type: 'get',
               dataType: "jsonp",
               cache:true,
@@ -529,7 +542,7 @@
                 var pc = posts.length;
 
                 if(pc>0) {
-                  // add section title	
+                  // add section title  
                   me.addClass("panel panel-default");
                   me.append('<div class="panel-heading"><h3 class="panel-title">'+settings.title+'</h3></div>');
 
@@ -545,7 +558,7 @@
                     var content = getContent(entry.content.$t);
 
                     // the item block
-                    var div = $('<div/>',{'class':settings.itemClass});				
+                    var div = $('<div/>',{'class':settings.itemClass});       
                     div.html('<div class="media"><div class="media-left"></div><div class="media-right"><h4 id="media-heading" class="media-heading"></div></div></div>');
                     // add thumbnail
                     div.find(".media-left").append(thumb);
@@ -646,7 +659,7 @@
       })(jQuery);
 
       // related posts
-      if (!(typeof labels === 'undefined') && (typeof labels === 'object')) {		
+      if (!(typeof labels === 'undefined') && (typeof labels === 'object')) {   
         if(labels.length > 0) {
           labels = labels.shift();        
           $('#related_posts').relatedPosts({labels:labels,title:'Related Post',url:"http://sandbox-mahavir-munot.blogspot.in/"});
