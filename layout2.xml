@@ -6,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <b:if cond='data:blog.url == data:blog.homepageUrl'><title><data:blog.title/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;item&quot;'><title><data:blog.pageName/> | <data:blog.title/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;archive&quot;'><title><data:blog.pageName/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;static_page&quot;'><title><data:blog.pageName/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;index&quot;'><b:if cond='data:blog.searchLabel'><title><data:blog.pageName/></title></b:if></b:if>
-    <b:if cond='data:blog.pageType == &quot;error_page&quot;'><title>Sorry, that page doesn't exist!</title></b:if>
+    <b:if cond='data:blog.pageType == &quot;item&quot;'><title><data:blog.pageName/> - <data:blog.title/></title></b:if>
+    <b:if cond='data:blog.pageType == &quot;archive&quot;'><title><data:blog.pageName/> - <data:blog.title/></title></b:if>
+    <b:if cond='data:blog.pageType == &quot;static_page&quot;'><title><data:blog.pageName/> - <data:blog.title/></title></b:if>
+    <b:if cond='data:blog.pageType == &quot;index&quot;'><b:if cond='data:blog.searchLabel'><title><data:blog.pageName/> - <data:blog.title/></title></b:if></b:if>
+    <b:if cond='data:blog.pageType == &quot;error_page&quot;'><title>Sorry, that page doesn't exist! - <data:blog.title/></title></b:if>
     <b:include data='blog' name='all-head-content'/>
+    <link rel='shortcut icon' href='http://www.addedbits.com/favicon.ico' />
+    <link rel='shortcut icon' href='http://www.addedbits.com/favicon.ico' type='image/vnd.microsoft.icon'/>  
+    <link rel="apple-touch-icon image_src" href="http://www.addedbits.com/favicon.ico" />
     &lt;style type=&quot;text/css&quot;&gt;&lt;!-- /*<b:skin><![CDATA[*/@import url(http://fonts.googleapis.com/css?family=Muli);
     body {
       font-family: Georgia;
@@ -50,7 +53,7 @@
       line-height: 1.1em;
       padding-bottom: 5px;
       text-shadow: 0 1px 0 #fff;
-      text-align: left;
+      text-align: center;
     }
     .caption h2{
       color: #333;
@@ -60,7 +63,7 @@
       line-height: 1.1em;
       padding-bottom: 5px;
       text-shadow: 0 1px 0 #fff;
-      text-align: left;
+      text-align: center;
     }
     .top-bar {
       background-attachment: scroll;
@@ -205,10 +208,6 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <!-- 
-    <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon'/>
-    <link href='https://lh3.googleusercontent.com/-2YIpmEjBpQE/VUxT25JILDI/AAAAAAAAADw/dKk7gm2yZNU/s426/favicon.ico' rel='shortcut icon' type='image/vnd.microsoft.icon'/>  
-    -->
 </head>
 <body>
   <!-- Fixed navbar -->
@@ -224,9 +223,7 @@
           <span class="icon-bar"></span>
         </button>
         
-        <!--Uncomment it to display logo for later 
         <a class="header-logo" href="/"><img src="https://lh3.googleusercontent.com/-cAbKmo6eZc8/VUxc0C2A2tI/AAAAAAAAAFw/FmSQ9ldZ2-Q/w426-h237/logo.png" /></a>
-        -->
       </div>
       <b:section class='navbar-collapse collapse' id='navbar' showaddelement='no'>
         <b:widget id='LinkList1' locked='false' title='navbar' type='LinkList' mobile='yes'>
@@ -273,14 +270,21 @@
           <div class="container">
               <div class="row">
                   <div class="col-md-12">
-                      <div class="error-template">
+                    <div class="thumbnail">
+                      <div class="caption">
+                        <div class="error-template">
                           <h1>Oops!</h1>
                           <h2>404 Not Found</h2>
                           <div class="error-details">Sorry, that page doesn't exist!</div>
                           <div class="error-actions">
+                            <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a>
+                            <!--
                               <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a><a href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                            -->
                           </div>
+                        </div>
                       </div>
+                    </div>
                   </div>
               </div>
           </div>
@@ -474,10 +478,8 @@
   
   <div class="footer">
     <div class="plain-bar"></div>
-    <div class="container">
-      <!--Uncomment it to display logo for later 
+    <div class="container">  
       <a class="footer-logo" href="/"><img src="https://lh3.googleusercontent.com/-cAbKmo6eZc8/VUxc0C2A2tI/AAAAAAAAAFw/FmSQ9ldZ2-Q/w426-h237/logo.png" /></a>
-      -->
       <p>
         Copyright &#169; 2015 addedbits.com. All rights reserved, the content is copyrighted to Mahavir Munot <!--- <a href='#' title='addedbits Advertisement'>Advertise</a>-->
       </p>
