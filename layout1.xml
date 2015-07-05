@@ -53,7 +53,7 @@
       line-height: 1.1em;
       padding-bottom: 5px;
       text-shadow: 0 1px 0 #fff;
-      text-align: center;
+      text-align: left;
     }
     .caption h2{
       color: #333;
@@ -63,7 +63,7 @@
       line-height: 1.1em;
       padding-bottom: 5px;
       text-shadow: 0 1px 0 #fff;
-      text-align: center;
+      text-align: left;
     }
     .top-bar {
       background-attachment: scroll;
@@ -108,41 +108,6 @@
     .box-heading {
       color: #6E6E6E !important;
       font-weight: bold;
-    }
-    .breadcrumb {
-      padding: 7px 14px;
-      margin: 0 0 18px;
-      background-color: #fbfbfb;
-      background-image: -moz-linear-gradient(top, #ffffff, #f5f5f5);
-      background-image: -ms-linear-gradient(top, #ffffff, #f5f5f5);
-      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#f5f5f5));
-      background-image: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
-      background-image: -o-linear-gradient(top, #ffffff, #f5f5f5);
-      background-image: linear-gradient(to bottom, #ffffff, #f5f5f5);
-      background-repeat: repeat-x;
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
-      border: 1px solid #ddd;
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      border-radius: 3px;
-      -webkit-box-shadow: inset 0 1px 0 #ffffff;
-      -moz-box-shadow: inset 0 1px 0 #ffffff;
-      box-shadow: inset 0 1px 0 #ffffff;
-    }
-    .breadcrumb > li {
-      display: inline-block;
-      text-shadow: 0 1px 0 #ffffff;
-    }
-    .breadcrumb > li + li:before {
-      color: #CCCCCC;
-      content: "\00BB";
-      padding: 0 5px;
-    }
-    .breadcrumb .divider {  
-      color: #999999;
-    }
-    .breadcrumb .active a {
-      color: #333333;
     }
     .navbar-nav {
       margin: 0 -15px !important;
@@ -196,6 +161,16 @@
       -moz-transform:scale(1.05); /* Firefox */
       -webkit-transform:scale(1.05); /* Safari and Chrome */
       -o-transform:scale(1.05); /* Opera */
+    }
+    .error_page strong { 
+      color: #333;
+      font-family: Helvetica,Arial;
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 1.1em;
+      padding-bottom: 5px;
+      text-shadow: 0 1px 0 #fff;
+      text-align:center!important;
     }
     ]]></b:skin>
     <style type='text/css'> 
@@ -264,216 +239,210 @@
   </nav>
   <!-- Fixed navbar -->
   <div class="container theme-showcase">
-    <div class="container">
-      <div class="row">       
-        <b:if cond='data:blog.pageType == &quot;error_page&quot;'>
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-12">
-                    <div class="thumbnail">
-                      <div class="caption">
-                        <div class="error-template">
-                          <h1>Oops!</h1>
-                          <h2>404 Not Found</h2>
-                          <div class="error-details">Sorry, that page doesn't exist!</div>
-                          <div class="error-actions">
-                            <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a>
-                            <!--
-                              <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a><a href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
-                            -->
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+    <div class="row">       
+      <b:if cond='data:blog.pageType == &quot;error_page&quot;'>
+        <div class="col-md-12">
+          <div class="thumbnail">
+            <div class="caption error_page">
+              <div class="error-template">
+                <strong>Oops!</strong><br/>
+                <strong>404 Not Found</strong>
+                <div class="error-details">Sorry, that page doesn't exist!</div>
+                <div class="error-actions">
+                  <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a>
+                  <!--
+                    <a href="/" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span> Take Me Home </a><a href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contact Support </a>
+                  -->
+                </div>
               </div>
+            </div>
           </div>
-        <b:else/>
-          <b:section class='col-sm-9' id='main' showaddelement='no'>
-            <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog'>
+        </div>       
+      <b:else/>
+        <b:section class='col-sm-9' id='main' showaddelement='no'>
+          <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog'>
 
-              <b:includable id='main' var='post'>
-                <b:include name='Postings'/>
-                <b:include name='nextprev'/>
-              </b:includable>
+            <b:includable id='main' var='post'>
+              <b:include name='Postings'/>
+              <b:include name='nextprev'/>
+            </b:includable>
 
-              <b:includable id='Postings'>
-                <b:loop values='data:posts' var='post'>               
-                  <div class="thumbnail">
-                    <div class="caption">
-                      <b:if cond='data:blog.pageType != "index"'>
-                        <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
-                      <b:else/>
-                        <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
-                      </b:if>  
-                      <b:if cond='data:blog.pageType != "static_page"'>
-                        <div>
-                           By <a expr:href='data:post.authorProfileUrl' title='About the Author' target="_blank"><data:post.author/></a> on <i><data:post.timestamp/></i>
-                        </div>
+            <b:includable id='Postings'>
+              <b:loop values='data:posts' var='post'>               
+                <div class="thumbnail">
+                  <div class="caption">
+                    <b:if cond='data:blog.pageType != "index"'>
+                      <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
+                    <b:else/>
+                      <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+                    </b:if>  
+                    <b:if cond='data:blog.pageType != "static_page"'>
+                      <div>
+                         By <a expr:href='data:post.authorProfileUrl' title='About the Author' target="_blank"><data:post.author/></a> on <i><data:post.timestamp/></i>
+                      </div>
+                    </b:if>
+                    <p>
+                      <data:post.body/>                        
+                      <b:if cond='data:post.hasJumpLink'>
+                        <a expr:href='data:post.url' expr:title='data:post.title'>
+                          <data:post.jumpText/>
+                        </a>
+                      </b:if>
+                    </p> 
+                    <b:if cond='data:post.labels'>
+                      <!--Labels array to store labels for showing related post -->
+                      <b:if cond='data:blog.pageType == "item"'>
+                        <script>var labels = [];</script>
                       </b:if>
                       <p>
-                        <data:post.body/>                        
-                        <b:if cond='data:post.hasJumpLink'>
-                          <a expr:href='data:post.url' expr:title='data:post.title'>
-                            <data:post.jumpText/>
-                          </a>
-                        </b:if>
-                      </p> 
-                      <b:if cond='data:post.labels'>
-                        <!--Labels array to store labels for showing related post -->
-                        <b:if cond='data:blog.pageType == "item"'>
-                          <script>var labels = [];</script>
-                        </b:if>
-                        <p>
-                          <strong>Tag(s): </strong>
-                          <b:loop var="label" values="data:post.labels">
-                            <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
-                            <b:if cond='data:blog.pageType == "item"'>
-                              <script>labels.push("<data:label.name/>");</script>
-                            </b:if>
-                          </b:loop>
-                        </p>
-                      </b:if>
-                      <b:if cond='data:blog.pageType != "static_page"'>
-                        <div class="highlight">
-                          <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_pinterest_large' title='PinInterest' displayText='Pinterest' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_email_large' title='Email' displayText='Email' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <!--<span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>-->
-                          <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        </div>
-                      </b:if>
-                    </div>
+                        <strong>Tag(s): </strong>
+                        <b:loop var="label" values="data:post.labels">
+                          <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
+                          <b:if cond='data:blog.pageType == "item"'>
+                            <script>labels.push("<data:label.name/>");</script>
+                          </b:if>
+                        </b:loop>
+                      </p>
+                    </b:if>
+                    <b:if cond='data:blog.pageType != "static_page"'>
+                      <div class="highlight">
+                        <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_pinterest_large' title='PinInterest' displayText='Pinterest' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_email_large' title='Email' displayText='Email' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        <!--<span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>-->
+                        <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                      </div>
+                    </b:if>
                   </div>
-
-                  <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                    <!-- related posts -->
-                    <div id='related_posts'></div>                  
-                  </b:if>
-
-                </b:loop>
-              </b:includable>
-
-              <b:includable id='nextprev'>
-                <nav>
-                  <ul class="pager">
-                  <b:if cond='data:olderPageUrl'>
-                    <li><a expr:href='data:olderPageUrl'><data:olderPageTitle/></a></li>
-                  </b:if>
-                  <b:if cond='data:blog.pageType != &quot;index&quot;'>
-                    <li><a href='/'>Home</a></li>                
-                  </b:if>
-                  <b:if cond='data:newerPageUrl'>
-                    <li><a expr:href='data:newerPageUrl'><data:newerPageTitle/></a></li>
-                  </b:if>
-                  </ul>
-                </nav>
-                <b:if cond='data:blog.pageType == "item"'>                  
-                  <div id="googlepluscommentsarea" >
-                    <script type="text/javascript">
-                      /* <![CDATA[ */;
-                      var w=document.getElementById('googlepluscommentsarea').offsetWidth;
-                      document.write('<g:comments href="'+window.location+'" width="'+w+'" height="50" first_party_property="BLOGGER" view_type="FILTERED_POSTMOD"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">Loading Google+ Comments...</span></div></div></g:comments>');/* ]]> */
-                    </script>
-                    <style type="text/css">#googlepluscommentsarea div[id^='___comments_'], #googlepluscommentsarea div[id^='___comments_'] iframe {width: 100% !important;}</style>
-                  </div>
-                  <!--        
-                  <div style="width: 100%">
-                      <div class="g-comments" expr:data-href="data:blog.url" data-width="600" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD"></div>
-                  </div>
-                  -->
-                </b:if>              
-              </b:includable>
-              
-              <b:includable id='shareButtons'/>
-              <b:includable id='backlinks'/>
-              <b:includable id='status-message'/>
-              <b:includable id='comment-form'/>
-              <b:includable id='backlinkDeleteIcon'/>
-              <b:includable id='mobile-nextprev'/>
-              <b:includable id='postQuickEdit'/>
-              <b:includable id='commentDeleteIcon'/>
-              <b:includable id='feedLinks'/>
-              <b:includable id='mobile-index-post'/>
-              <b:includable id='feedLinksBody'/>
-              <b:includable id='comments' var='post'/>             
-            </b:widget>
-          </b:section>
-          
-          <b:section class='col-sm-3' id='sidebar'>
-
-            <b:widget id='HTML1' title='Search' type='HTML' locked='false' mobile='yes'>
-              <b:includable id='main'>
-                <!--Search Box Start -->
-                <div class="panel panel-default">
-                  <form expr:action='data:blog.homepageUrl + &quot;search/&quot;' id='searchform' method='get'>
-                    <div class="row">             
-                      <div class="col-lg-12">
-                        <div class="input-group">
-                          <input type="text" class="form-control" placeholder="Search" id='q' name='q' />
-                          <input name='max-results' value="10" type='hidden'/>
-                          <span class="input-group-btn">
-                              <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                          </span>
-                        </div><!-- /input-group -->
-                      </div><!-- /.col-lg-6 -->
-                    </div><!-- /.row -->
-                  </form>
                 </div>
-                <!--Search Box End -->
-              </b:includable>
-            </b:widget>
 
-            <b:widget id='HTML2' locked='false' mobile='yes' title='Search' type='HTML'>
-              <b:includable id='main'>
-                <div style="margin-bottom:20px;">
-                  <!--Google Plus Profile Start -->
-                  <div class='g-person' data-href='https://plus.google.com/100927912275011853533' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
-                  <!--Google Plus Profile End -->
+                <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                  <!-- related posts -->
+                  <div id='related_posts'></div>                  
+                </b:if>
+
+              </b:loop>
+            </b:includable>
+
+            <b:includable id='nextprev'>
+              <nav>
+                <ul class="pager">
+                <b:if cond='data:olderPageUrl'>
+                  <li><a expr:href='data:olderPageUrl'><data:olderPageTitle/></a></li>
+                </b:if>
+                <b:if cond='data:blog.pageType != &quot;index&quot;'>
+                  <li><a href='/'>Home</a></li>                
+                </b:if>
+                <b:if cond='data:newerPageUrl'>
+                  <li><a expr:href='data:newerPageUrl'><data:newerPageTitle/></a></li>
+                </b:if>
+                </ul>
+              </nav>
+              <b:if cond='data:blog.pageType == "item"'>                  
+                <div id="googlepluscommentsarea" >
+                  <script type="text/javascript">
+                    /* <![CDATA[ */;
+                    var w=document.getElementById('googlepluscommentsarea').offsetWidth;
+                    document.write('<g:comments href="'+window.location+'" width="'+w+'" height="50" first_party_property="BLOGGER" view_type="FILTERED_POSTMOD"><div class="progress"><div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%"><span class="sr-only">Loading Google+ Comments...</span></div></div></g:comments>');/* ]]> */
+                  </script>
+                  <style type="text/css">#googlepluscommentsarea div[id^='___comments_'], #googlepluscommentsarea div[id^='___comments_'] iframe {width: 100% !important;}</style>
                 </div>
-              </b:includable>
-            </b:widget>
+                <!--        
+                <div style="width: 100%">
+                    <div class="g-comments" expr:data-href="data:blog.url" data-width="600" data-first_party_property="BLOGGER" data-view_type="FILTERED_POSTMOD"></div>
+                </div>
+                -->
+              </b:if>              
+            </b:includable>
+            
+            <b:includable id='shareButtons'/>
+            <b:includable id='backlinks'/>
+            <b:includable id='status-message'/>
+            <b:includable id='comment-form'/>
+            <b:includable id='backlinkDeleteIcon'/>
+            <b:includable id='mobile-nextprev'/>
+            <b:includable id='postQuickEdit'/>
+            <b:includable id='commentDeleteIcon'/>
+            <b:includable id='feedLinks'/>
+            <b:includable id='mobile-index-post'/>
+            <b:includable id='feedLinksBody'/>
+            <b:includable id='comments' var='post'/>             
+          </b:widget>
+        </b:section>
+        
+        <b:section class='col-sm-3' id='sidebar'>
 
-            <b:widget id='Label1' locked='false' title='Categories' type='Label' mobile='yes'>
-              <b:includable id='main'>
-                <div class='panel panel-default'>
-                  <!-- Default panel contents -->
-                  <div class='panel-heading box-heading'><b:if cond='data:title'><data:title/></b:if></div>
-                    <!-- List group -->
-                    <ul class='list-group'>
-                      <b:loop values='data:labels' var='label'>
-                        <li class='list-group-item'><a expr:href='data:label.url + &quot;?max-results=10&quot;'><data:label.name/> <span class="badge"><data:label.count/></span></a></li>
-                      </b:loop>
-                    </ul>
-                  </div>
-              </b:includable>
-            </b:widget>
+          <b:widget id='HTML1' title='Search' type='HTML' locked='false' mobile='yes'>
+            <b:includable id='main'>
+              <!--Search Box Start -->
+              <div class="panel panel-default">
+                <form expr:action='data:blog.homepageUrl + &quot;search/&quot;' id='searchform' method='get'>
+                  <div class="row">             
+                    <div class="col-lg-12">
+                      <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" id='q' name='q' />
+                        <input name='max-results' value="10" type='hidden'/>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </span>
+                      </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                  </div><!-- /.row -->
+                </form>
+              </div>
+              <!--Search Box End -->
+            </b:includable>
+          </b:widget>
 
-            <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' mobile='yes'>
-              <b:includable id='main'>
-                <div class="panel panel-default">
-                  <!-- Default panel contents -->
-                  <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
+          <b:widget id='HTML2' locked='false' mobile='yes' title='Search' type='HTML'>
+            <b:includable id='main'>
+              <div style="margin-bottom:20px;">
+                <!--Google Plus Profile Start -->
+                <div class='g-person' data-href='https://plus.google.com/100927912275011853533' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
+                <!--Google Plus Profile End -->
+              </div>
+            </b:includable>
+          </b:widget>
+
+          <b:widget id='Label1' locked='false' title='Categories' type='Label' mobile='yes'>
+            <b:includable id='main'>
+              <div class='panel panel-default'>
+                <!-- Default panel contents -->
+                <div class='panel-heading box-heading'><b:if cond='data:title'><data:title/></b:if></div>
                   <!-- List group -->
-                  <ul class="list-group">
-                    <b:loop values='data:posts' var='post'>
-                      <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>
+                  <ul class='list-group'>
+                    <b:loop values='data:labels' var='label'>
+                      <li class='list-group-item'><a expr:href='data:label.url + &quot;?max-results=10&quot;'><data:label.name/> <span class="badge"><data:label.count/></span></a></li>
                     </b:loop>
                   </ul>
                 </div>
-              </b:includable>
-            </b:widget>
+            </b:includable>
+          </b:widget>
 
-          </b:section>
-        </b:if>
-      </div> <!-- /row -->
-    </div> <!-- /container -->
+          <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' mobile='yes'>
+            <b:includable id='main'>
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
+                <!-- List group -->
+                <ul class="list-group">
+                  <b:loop values='data:posts' var='post'>
+                    <li class="list-group-item"><a expr:href='data:post.href'><data:post.title/></a></li>
+                  </b:loop>
+                </ul>
+              </div>
+            </b:includable>
+          </b:widget>
+
+        </b:section>
+      </b:if>
+    </div> <!-- /row -->
   </div> <!-- /container theme-showcase-->
   
   <div class="footer">
