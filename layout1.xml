@@ -12,9 +12,9 @@
     <b:if cond='data:blog.pageType == &quot;index&quot;'><b:if cond='data:blog.searchLabel'><title><data:blog.pageName/> - <data:blog.title/></title></b:if></b:if>
     <b:if cond='data:blog.pageType == &quot;error_page&quot;'><title>Sorry, that page doesn't exist! - <data:blog.title/></title></b:if>
     <b:include data='blog' name='all-head-content'/>
-    <link rel='shortcut icon' href='http://www.addedbits.com/favicon.ico' />
-    <link rel='shortcut icon' href='http://www.addedbits.com/favicon.ico' type='image/vnd.microsoft.icon'/>  
-    <link rel="apple-touch-icon image_src" href="http://www.addedbits.com/favicon.ico" />
+    <link rel='shortcut icon' href='/favicon.ico' />
+    <link rel='shortcut icon' href='/favicon.ico' type='image/vnd.microsoft.icon'/>  
+    <link rel="apple-touch-icon image_src" href="/favicon.ico" />
     &lt;style type=&quot;text/css&quot;&gt;&lt;!-- /*<b:skin><![CDATA[*/@import url(http://fonts.googleapis.com/css?family=Muli);
     body {
       font-family: Georgia;
@@ -268,66 +268,72 @@
             </b:includable>
 
             <b:includable id='Postings'>
-              <b:loop values='data:posts' var='post'>               
-                <div class="thumbnail">
-                  <div class="caption">
-                    <b:if cond='data:blog.pageType != "index"'>
-                      <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
-                    <b:else/>
-                      <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
-                    </b:if>  
-                    <b:if cond='data:blog.pageType != "static_page"'>
-                      <div>
-                         By <a expr:href='data:post.authorProfileUrl' title='About the Author' target="_blank"><data:post.author/></a> on <i><data:post.timestamp/></i>
-                      </div>
-                    </b:if>
-                    <p>
-                      <data:post.body/>                        
-                      <b:if cond='data:post.hasJumpLink'>
-                        <a expr:href='data:post.url' expr:title='data:post.title'>
-                          <data:post.jumpText/>
-                        </a>
-                      </b:if>
-                    </p> 
-                    <b:if cond='data:post.labels'>
-                      <!--Labels array to store labels for showing related post -->
-                      <b:if cond='data:blog.pageType == "item"'>
-                        <script>var labels = [];</script>
+              <b:if cond='data:numPosts > 0'>
+                <b:loop values='data:posts' var='post'>               
+                  <div class="thumbnail">
+                    <div class="caption">
+                      <b:if cond='data:blog.pageType != "index"'>
+                        <h1><a expr:href='data:post.url'><data:post.title/></a></h1>
+                      <b:else/>
+                        <h2><a expr:href='data:post.url'><data:post.title/></a></h2>
+                      </b:if>  
+                      <b:if cond='data:blog.pageType != "static_page"'>
+                        <div>
+                           By <a expr:href='data:post.authorProfileUrl' title='About the Author' target="_blank"><data:post.author/></a> on <i><data:post.timestamp/></i>
+                        </div>
                       </b:if>
                       <p>
-                        <strong>Tag(s): </strong>
-                        <b:loop var="label" values="data:post.labels">
-                          <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
-                          <b:if cond='data:blog.pageType == "item"'>
-                            <script>labels.push("<data:label.name/>");</script>
-                          </b:if>
-                        </b:loop>
-                      </p>
-                    </b:if>
-                    <b:if cond='data:blog.pageType != "static_page"'>
-                      <div class="highlight">
-                        <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_pinterest_large' title='PinInterest' displayText='Pinterest' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_email_large' title='Email' displayText='Email' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                        <!--<span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>-->
-                        <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                      </div>
-                    </b:if>
+                        <data:post.body/>                        
+                        <b:if cond='data:post.hasJumpLink'>
+                          <a expr:href='data:post.url' expr:title='data:post.title'>
+                            <data:post.jumpText/>
+                          </a>
+                        </b:if>
+                      </p> 
+                      <b:if cond='data:post.labels'>
+                        <!--Labels array to store labels for showing related post -->
+                        <b:if cond='data:blog.pageType == "item"'>
+                          <script>var labels = [];</script>
+                        </b:if>
+                        <p>
+                          <strong>Tag(s): </strong>
+                          <b:loop var="label" values="data:post.labels">
+                            <a expr:href='data:label.url + &quot;?max-results=10&quot;' rel='tag'><span class="label label-primary"><data:label.name/></span></a>                          
+                            <b:if cond='data:blog.pageType == "item"'>
+                              <script>labels.push("<data:label.name/>");</script>
+                            </b:if>
+                          </b:loop>
+                        </p>
+                      </b:if>
+                      <b:if cond='data:blog.pageType != "static_page"'>
+                        <div class="highlight">
+                          <span class='st_facebook_large' title='Facebook'  displayText='Facebook' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_twitter_large' title='Twitter' st_via='mahavir1408' displayText='Tweet' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_linkedin_large' title='LinkedIn' displayText='LinkedIn' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_pinterest_large' title='PinInterest' displayText='Pinterest' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_email_large' title='Email' displayText='Email' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                          <!--<span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>-->
+                          <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
+                        </div>
+                      </b:if>
+                    </div>
                   </div>
+
+                  <b:if cond='data:blog.pageType == &quot;item&quot;'>
+                    <!-- related posts -->
+                    <div id='related_posts'></div>                  
+                  </b:if>
+
+                </b:loop>
+              <b:else/>
+                <div class="thumbnail">
+                  <div class="caption">Nothing here</div>
                 </div>
-
-                <b:if cond='data:blog.pageType == &quot;item&quot;'>
-                  <!-- related posts -->
-                  <div id='related_posts'></div>                  
-                </b:if>
-
-              </b:loop>
+              </b:if>
             </b:includable>
 
             <b:includable id='nextprev'>
