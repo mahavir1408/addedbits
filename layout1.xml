@@ -330,7 +330,7 @@
                 </b:loop>
               <b:else/>
                 <div class="thumbnail">
-                  <div class="caption"><strong>This site is under construction, sorry for the inconvinence. Please check back soon!! </strong></div>
+                  <div class="caption"><div class="alert alert-warning" role="alert"><strong>This site is under construction, sorry for the inconvinence. Please check back soon!! </strong></div></div>
                 </div>
               </b:if>
             </b:includable>
