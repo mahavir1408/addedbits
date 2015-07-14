@@ -315,8 +315,7 @@
                           <span class='st_googleplus_large' title='Google Plus' displayText='Google Plus' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                           <span class='st_tumblr_large' title='Tumblr' displayText='Tumblr' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                           <span class='st_blogger_large' title='Blogger' displayText='Blogger' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
-                          <!--<span class='st_sharethis_large' title='Share This' displayText='Share This' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>-->
+                          <span class='st_google_translate_large' title='Google Translate' displayText='Google Translate' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>                         
                           <span class='st_print_large' title='Print' displayText='Print' expr:st_img='data:post.thumbnailUrl' expr:st_title='data:post.title' expr:st_url='data:post.url'/>
                         </div>
                       </b:if>
@@ -331,7 +330,7 @@
                 </b:loop>
               <b:else/>
                 <div class="thumbnail">
-                  <div class="caption">Nothing here</div>
+                  <div class="caption"><strong>This site is under construction, sorry for the inconvinence. Please check back soon!! </strong></div>
                 </div>
               </b:if>
             </b:includable>
@@ -432,7 +431,7 @@
           </b:widget>
 
           <b:widget id='PopularPosts1' locked='false' title='Popular Posts' type='PopularPosts' mobile='yes'>
-            <b:includable id='main'>
+            <b:includable id='main'> 
               <div class="panel panel-default">
                 <!-- Default panel contents -->
                 <div class="panel-heading box-heading"><b:if cond='data:title'><data:title/></b:if></div>
