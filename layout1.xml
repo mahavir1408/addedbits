@@ -5,12 +5,25 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <b:if cond='data:blog.url == data:blog.homepageUrl'><title><data:blog.title/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;item&quot;'><title><data:blog.pageName/> - <data:blog.title/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;archive&quot;'><title><data:blog.pageName/> - <data:blog.title/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;static_page&quot;'><title><data:blog.pageName/> - <data:blog.title/></title></b:if>
-    <b:if cond='data:blog.pageType == &quot;index&quot;'><b:if cond='data:blog.searchLabel'><title><data:blog.pageName/> - <data:blog.title/></title></b:if></b:if>
-    <b:if cond='data:blog.pageType == &quot;error_page&quot;'><title>Sorry, that page doesn't exist! - <data:blog.title/></title></b:if>
+
+    <b:switch var='data:blog.pageType'>
+    <b:case value="index" />
+      <b:if cond='data:blog.pageName != ""'>
+        <title><data:blog.pageName/> - <data:blog.title/></title>
+      <b:else/>
+        <title>Technical blogging, Tutorials, Code Snippets, Demos - <data:blog.title/></title>
+      </b:if>
+    <b:case value="item" />
+      <title><data:blog.pageName/> - <data:blog.title/></title>
+    <b:case value="error_page" />
+      <title>Sorry, that page doesn't exist! - <data:blog.title/></title>
+    <b:case value="static_page" />
+      <title><data:blog.pageName/> - <data:blog.title/></title>
+    <b:default />
+      <title><data:blog.pageName/> - <data:blog.title/></title>
+    </b:switch>
+
+
     <b:include data='blog' name='all-head-content'/>
     <link rel='shortcut icon' href='/favicon.ico' />
     <link rel='shortcut icon' href='/favicon.ico' type='image/vnd.microsoft.icon'/>  
@@ -206,9 +219,9 @@
             <ul class='nav navbar-nav navbar-right'>
               <b:loop values='data:links' var='link'>
                 <b:if cond='data:blog.canonicalUrl==data:link.target or data:blog.url==data:link.target'>
-                  <li class='active'><a expr:href='data:link.target'><data:link.name/></a></li>
+                  <li class='active'><a expr:href='data:link.target' expr:title='data:link.name'><data:link.name/></a></li>
                 <b:else/>
-                  <li><a expr:href='data:link.target' expr:name='&quot;NonCanonicalUrl:&quot;+data:blog.url' expr:rel='&quot;LinkTarget:&quot;+data:link.target' expr:title='&quot;CanonicalUrl:&quot;+data:blog.canonicalUrl'><data:link.name/></a></li>
+                  <li><a expr:href='data:link.target' expr:title='data:link.name'><data:link.name/></a></li>
                 </b:if>
               </b:loop>
             </ul>
@@ -405,11 +418,11 @@
             </b:includable>
           </b:widget>
 
-          <b:widget id='HTML2' locked='false' mobile='yes' title='Search' type='HTML'>
+          <b:widget id='Profile1' locked='false' mobile='yes' title='Profile' type='Profile'>
             <b:includable id='main'>
               <div style="margin-bottom:20px;">
                 <!--Google Plus Profile Start -->
-                <div class='g-person' data-href='https://plus.google.com/100927912275011853533' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
+                <div class='g-person' expr:data-href='data:userUrl' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
                 <!--Google Plus Profile End -->
               </div>
             </b:includable>
