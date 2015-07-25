@@ -418,11 +418,11 @@
             </b:includable>
           </b:widget>
 
-          <b:widget id='HTML2' locked='false' mobile='yes' title='Search' type='HTML'>
+          <b:widget id='Profile1' locked='false' mobile='yes' title='Profile' type='Profile'>
             <b:includable id='main'>
               <div style="margin-bottom:20px;">
                 <!--Google Plus Profile Start -->
-                <div class='g-person' data-href='https://plus.google.com/100927912275011853533' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
+                <div class='g-person' expr:data-href='data:userUrl' data-layout='potrait' data-theme='light' data-width='260' style="margin-bottom:20px;"/>
                 <!--Google Plus Profile End -->
               </div>
             </b:includable>
